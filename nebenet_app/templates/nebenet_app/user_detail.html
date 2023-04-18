@@ -8,6 +8,7 @@
     <ul style="font-size: 25px; text-align:left; margin-left: 20%;">
       <p>Nome utente: {{ user.username }}</p>
       <p>Email: {{ user.email }}</p>
+      <p>La giornata è stata registrata: {{ user.date }}</p>
       <p>Tickets aperti:</p>
       {% for ticket in tickets %}
       <li style="list-style: none"><a href="{% url 'tickets' %}">{{ ticket }}</a></li>
