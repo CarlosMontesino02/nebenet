@@ -2,9 +2,7 @@
 {% block content %}
 <body style="margin-top:10%;">
     <center>
-    {% if user.image %}
-    <div style="padding-left: 6%;"><img class="profilepick" src="/media/{{ user.image }}"></div>
-      {% endif %}
+    <div style="padding-left: 6%;"><img class="profilepick" {% if user.image %} src="/media/{{ user.image }}" {% else %} src="/static/assets/img/noprof.webp"{% endif %}></div>
     <ul style="font-size: 25px; text-align:left; margin-left: 20%;">
       <p>Nome utente: {{ user.username }}</p>
       <p>Email: {{ user.email }}</p>

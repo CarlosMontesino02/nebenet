@@ -5,7 +5,8 @@
 </header>
     <body>
         {% if user.is_staff %}
-        <p class="adminpro">Vuoi aggiungere un prodotto? <a href="{% url 'products_add' %}"><button class="button-9" role="button">Aggiungere</button></a></p>
+        <p class="adminpro">Vuoi aggiungere un prodotto? <a href="{% url 'products_add' %}">
+            <button class="button-9" role="button">Aggiungere</button></a></p>
 
         {% endif %}
         <center>

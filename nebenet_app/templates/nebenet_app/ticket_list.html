@@ -2,9 +2,11 @@
 {% block content %}
 {% load static %}
 <header class="masthead">
+    
 </header>
-<center><h1>Lista dei tickets</h1></center>
-        <center>
+<center>
+<p class="adminpro"><h1>Lista dei tickets</h1> {% if user.is_staff %}<a href="{% url 'tickets-admin' %}">
+    <button class="button-9" role="button">Admin view</button></a></p>{% endif %}
         <ul class="tickets">
             {% for ticket in object_list %} 
             <li style="list-style: none;"> {{ ticket.ti_time }} <a class="singleticket" href="{{ ticket.pk }}">{{ ticket.ti_title }}</a></li>

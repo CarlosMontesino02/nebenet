@@ -17,15 +17,20 @@
     </center> 
     {% endif %}
     <div class="comentarios">
-    <p>Chat:</p>
+    {% if user.is_staff%}
+    <p style="color: #ffffff">Chatta con {{ ticket.ti_user }}:</p>
+    {% else %}
+    <p style="color: #ffffff">Chatta con l'amministrazione:</p>
+    {% endif %}
     {% for coment in coments %}
-        <p><span class="fechaco">{{ coment.ti_time }}</span><span class="nomuser"> {{ coment.co_user }}</span> : <span class="cotexto">{{ coment }}</span></p>
+        <p><span class="fechaco">{{ coment.ti_time }}</span><span class="nomuser"> {{ coment.co_user }}</span><span style="color: #ffffff"> :  </span><span class="cotexto"> {{ coment }}</span></p>
     {% endfor %}
     {% if user.is_authenticated %}
     <form action="" method="POST" id="main_form">
-           <label for="coment">{{ request.user.username }} :</label>
+           <label for="coment" class="nomuser">{{ request.user.username }} :</label>
            {{ coment_form.co_text }} {% csrf_token %} <button type="submit" class="button-623"><i class="fa-regular fa-paper-plane"></i></button></div>
     </form>
+    <p></p>
     {% else %} <h2>You need to Login to comment</h2> 
     {% endif %}
     </div> 

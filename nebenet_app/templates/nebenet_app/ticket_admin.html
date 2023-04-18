@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header>
+    <link href="/static/css/tabla.css" rel="stylesheet" />
+</header>
+<body>
+    <p class="adminpro"><h1>Lista dei tickets</h1> 
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>Data</th>
+            <th>Utente</th>
+            <th>Titolo </th>
+            <th>Mail</th>
+            <th>Opzioni</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ticket in object_list %} 
+        <tr>
+            <td>{{ ticket.ti_time }}</td>
+            <td> <a class="singleticket" href="/usuarios/{{ ticket.ti_user.pk }}">{{ ticket.ti_user }}</a></td>
+            <td><a class="singleticket" href="/ticket/{{ ticket.pk }}">{{ ticket.ti_title }}</a></td>
+            <td>{{ ticket.ti_mail }}</td>
+            <td><a style="text-decoration: none; color: green ;" href="{% url 'tickets_update' ticket.pk %}">Modificare </a><span></span> <a style="text-decoration: none; color: red ;" href="{% url 'tickets_delete' ticket.pk %}"> Eliminare</a></td>
+        </tr>
+        {% endfor %}
+        <tbody>
+    </table>
+</div>
+</body>
+{% endblock %}
