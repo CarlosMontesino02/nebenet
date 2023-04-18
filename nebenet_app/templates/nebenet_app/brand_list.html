@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header class="masthead">
+</header>
+<center><h1>Marchi con cui lavoriamo</h1></center>
+{% if user.is_staff %}
+<p class="adminpro">Vuoi aggiungere un marchio? <a href="{% url 'brands_add' %}"><button class="button-9" role="button">Aggiungere</button></a></p>
+
+{% endif %}
+    <body>
+        <center>
+        <ul>
+                <div class="container">
+                    <!-- Portfolio Grid Items-->
+                    <div class="row justify-content-center">
+          {% for brand in object_list %}
+                    <!-- Portfolio Item -->
+                    <div class="col-md-6 col-lg-4 mb-5">    
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ forloop.counter0 }}">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            {% if user.is_staff %}<a href="{{ brand.pk }}">{% endif %}<img class="img-fluidbrand" src="/media/{{ brand.bra_img }}" alt="..." /></a>
+                        </div>
+                    </div>
+            {% endfor %}
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ brand.pk }}">{{ brand.bra_name }}</a> 
+        </ul>
+        </center>
+    </body>
+
+{% endblock %}

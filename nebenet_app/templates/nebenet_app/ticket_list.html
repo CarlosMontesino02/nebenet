@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header class="masthead">
+</header>
+<center><h1>Lista dei tickets</h1></center>
+        <center>
+        <ul class="tickets">
+            {% for ticket in object_list %} 
+            <li style="list-style: none;"> {{ ticket.ti_time }} <a class="singleticket" href="{{ ticket.pk }}">{{ ticket.ti_title }}</a></li>
+            {% endfor %}
+        </ul>
+        </center>
+        <p></p>
+
+{% endblock %}

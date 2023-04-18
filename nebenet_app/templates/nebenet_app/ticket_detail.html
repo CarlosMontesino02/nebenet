@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<body style="margin-top:10%;">
+    {% if user.is_staff %}
+    <p class="adminpro">Ticket risolto? <a href="{% url 'tickets_delete' ticket.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
+
+    {% endif %}
+    <center>
+    <p style="font-size: 25px; text-align: center;">{{ ticket.ti_title }}</p>
+    <p style="font-size: 20px; text-align: center;">{{ ticket.ti_user }}, {{ ticket.ti_time }}</p>
+    <p style="font-size: 25px; text-align: center;"></a>E-mail:<a href="mailto: {{ ticket.ti_mail }}"> {{ ticket.ti_mail }}</a></p>
+    <p style="padding-left: 10%; padding-right: 10%;">{{ ticket.Problema }}</p>
+    {% if ticket.ti_img  %}
+    <div class="d-flex flex-column align-items-center"><img class="img-ticket"style="padding-bottom: 5%" src="/media/{{ ticket.ti_img }}" alt="Image not found"/>
+    </div>
+    </center> 
+    {% endif %}
+    <div class="comentarios">
+    <p>Chat:</p>
+    {% for coment in coments %}
+        <p><span class="fechaco">{{ coment.ti_time }}</span><span class="nomuser"> {{ coment.co_user }}</span> : <span class="cotexto">{{ coment }}</span></p>
+    {% endfor %}
+    {% if user.is_authenticated %}
+    <form action="" method="POST" id="main_form">
+           <label for="coment">{{ request.user.username }} :</label>
+           {{ coment_form.co_text }} {% csrf_token %} <button type="submit" class="button-623"><i class="fa-regular fa-paper-plane"></i></button></div>
+    </form>
+    {% else %} <h2>You need to Login to comment</h2> 
+    {% endif %}
+    </div> 
+</body>
+{% endblock %}

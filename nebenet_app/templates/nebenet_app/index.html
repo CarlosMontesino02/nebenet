@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header class="masthead2 bg-primary text-white text-center">
+    <div class="d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img style="width:100%;" class="masthead2-avatar" src="/static/assets/img/slide2.png" alt="..." />
+    </div>
+</header>
+        <!-- Portfolio Section
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">LE AZIENDE CHE SI FIDANO DI NOI</h2>
+                <p></p>
+                <!-- Portfolio Grid Items
+                <div class="row justify-content-center">
+                    <!-- Portfolio Item 1
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/assets/img/portfolio/cabin.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 2
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/assets/img/portfolio/cake.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 3
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/assets/img/portfolio/circus.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 4
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/assets/img/portfolio/game.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 5
+                    <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/assets/img/portfolio/safe.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 6
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/assets/img/portfolio/submarine.png" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+        <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+               <!--<h2 class="page-section-heading text-center text-uppercase text-white">About</h2> 
+                <!-- Icon Divider
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>-->
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class="col-lg-4 ms-auto"><p class="lead">Siamo i tuoi assistenti informatici di fiducia. Da oltre 20 anni ci occupiamo di assistenza informatica e sistemistica a Potenza e provincia. Vendita e riparazione di pc, hardware e software, consigliando sempre settaggi e prodotti adatti alle tue esigenze.</p></div>
+                    <div class="col-lg-4 me-auto"><p class="lead">Grazie alle nuove tecnologie offriamo anche assistenza a distanza. Per le aziende offriamo servizi verticali che vanno dall'assistenza sistemistica alla vendita e installazione di server dedicati.</p></div>
+                </div>
+                <!-- About Section Button-->
+                <div class="text-center mt-4">
+                    <a class="btn btn-xl btn-outline-light" href="{% url 'tickets_add' %}">
+                        APRI UN TICKET
+                    </a>
+                    <a class="btn btn-xl btn-outline-light" href="https://get.teamviewer.com/c4natv6">
+                        ASISTENZA A DISTANZA
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section-->
+        
+        <section id="contact">
+            <!--<div>
+                 Contact Section Heading
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2> Icon Divider
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            </div>-->
+            <div class="d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img style="width: 100%;" class="masthead2-avatar" src="/static/assets/img/slide3.png" alt="..." />
+            </div>
+        </section>
+{% endblock %}  

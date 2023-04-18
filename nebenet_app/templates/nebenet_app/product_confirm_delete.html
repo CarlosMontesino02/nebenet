@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="masthead-heading formhead">Eliminare il prodotto</div>
+  <p></p>
+<div class="formulario">
+  <p></p>
+  <form method="post">{% csrf_token %}
+    <p>Sei sicuro di volere il prodotto? {{ product.pro_name }}</p>
+    <button class="button-91" role="button">Eliminare</button></a>
+    </form>
+    <p></p>
+  </form>
+</div>
+{% endblock %}

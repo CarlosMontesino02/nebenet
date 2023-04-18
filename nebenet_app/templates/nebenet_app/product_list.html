@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header class="masthead">
+</header>
+    <body>
+        {% if user.is_staff %}
+        <p class="adminpro">Vuoi aggiungere un prodotto? <a href="{% url 'products_add' %}"><button class="button-9" role="button">Aggiungere</button></a></p>
+
+        {% endif %}
+        <center>
+        <ul>
+                <div class="container">
+                    <!-- Portfolio Grid Items-->
+                    <div class="row justify-content-center">
+          {% for product in object_list %}
+                    <!-- Portfolio Item -->
+                    <div class="col-md-6 col-lg-4 mb-5">    
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ forloop.counter0 }}">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            <p class="nombrepro">{{ product.pro_name }}</p>
+                            </div>
+                            <a href="{{ product.pk }}"><img class="img-fluidbrand" src="/media/{{ product.pro_img }}" alt="..." /></a>
+                        </div>
+                        <p class="precio">{{ product.pro_price }} €</p>
+                    </div>
+            {% endfor %}
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ product.pk }}">{{ product.pro_name }}</a> 
+        </ul>
+        </center>
+    </body>
+
+{% endblock %}

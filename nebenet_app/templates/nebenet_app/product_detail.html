@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<body style="margin-top:10%;">
+    <body style="margin-top:10%;">
+        {% if user.is_staff %}
+        <p class="adminpro">Vuoi modificare il prodotto? <a href="{% url 'products_update' product.pk %}"><button class="button-9" role="button">Modificare</button></a><a href="{% url 'products_delete' product.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
+    
+        {% endif %}
+        <center>
+        {% if product.pro_img  %}
+        <div class="flex-column"><img class="img-product" src="/media/{{ product.pro_img }}" alt="Image not found"/></div>
+        {% endif %}
+        <div style="text-align: left;">
+            <ul style="font-size: 20px; text-align:left; margin-left: 30%; padding-right: 1.5em;">
+                <p style="font-size: 25px;">{{ product.pro_name }}</p>
+                <p style="font-size: 40px;" class="precio">{{ product.pro_price }} €</p>
+                <p>Descrizione : {{ product.pro_description }}</p>
+                <p>Caratteristiche : {{ product.pro_characteristics }}</p>
+                <p>Tipo: {{ product.pro_type }}</p> 
+                <p>Marca: {{ product.pro_brand }}</p>
+            </ul>
+        </div>
+        </center>    
+</body>
+{% endblock %}
+
+<!--<body style="margin-top:10%;">
+    {% if user.is_staff %}
+    <p class="adminpro">Vuoi modificare il prodotto? <a href="{% url 'products_update' product.pk %}"><button class="button-9" role="button">Modificare</button></a><a href="{% url 'products_delete' product.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
+
+    {% endif %}
+    <center>
+    {% if product.pro_img  %}
+    <div class="flex-column"><img class="img-product" src="/media/{{ product.pro_img }}" alt="Image not found"/></div>
+    {% endif %}
+    <div style="text-align: left;">
+        <ul style="font-size: 20px; text-align:left; margin-left: 30%; padding-right: 1.5em;">
+            <p style="font-size: 25px;">{{ product.pro_name }}</p>
+            <p style="font-size: 40px;" class="precio">{{ product.pro_price }} €</p>
+            <p>Descrizione : {{ product.pro_description }}</p>
+            <p>Caratteristiche : {{ product.pro_characteristics }}</p>
+            <p>Tipo: {{ product.pro_type }}</p> 
+            <p>Marca: {{ product.pro_brand }}</p>
+        </ul>
+    </div>
+    </center>   
+</body>-->

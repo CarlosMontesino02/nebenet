@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+  .helptext{
+    visibility: hidden;
+  }
+  
+  </style>
+<div class="formulario">
+  <header class="masthead">
+    <div style="font-size:35px;" class="masthead-heading text-uppercase">Modulo di registrazione:</div>
+    <p></p>
+  </header>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button-9" type="submit">Editar</button>
+    <p></p>
+  </form>
+</div>
+
+{% endblock %}

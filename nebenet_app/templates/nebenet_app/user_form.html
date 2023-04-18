@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="formulario">
+  <header class="masthead">
+    <div style="font-size:35px;" class="masthead-heading text-uppercase">Modulo di registrazione:</div>
+    <p></p>
+  </header>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button-62">Sing Up</button>
+    <p style="color:white;">.</p>
+  </form>
+</div>
+
+{% endblock %}
