@@ -13,6 +13,7 @@ from location_field.models.plain import PlainLocationField
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     image = models.ImageField(upload_to ='img/')
+    date = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
         return reverse('usuarios-detalles', kwargs={'pk': self.pk})
@@ -105,7 +106,7 @@ class Ticket(models.Model):
     ti_title = models.CharField('Titolo*',max_length=1000, blank=False)
     Problema = models.CharField('Descrivi il tuo problema*',max_length=1000, blank=False)
     ti_img = models.ImageField('Aggiungi uno screenshot (facoltativo)',blank=True)
-    ti_personal = models.BooleanField("Trattamento dei dati personali*",blank=False)
+    ti_personal = models.BooleanField("Trattamento dei dati personali(Obbligatorio)*",blank=False)
     ti_time = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.ti_title
