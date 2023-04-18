@@ -46,6 +46,14 @@ class Update_User(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
             return False
 
 #User
+class search(ListView):
+    model = User
+    template_name="photanic_app/search.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=User.objects.filter(Q(username__icontains=query))
+        return object_list
+
 class User_List(LoginRequiredMixin, ListView):
     model = User
     template_name = "./nebenet_app/user_list.html"
