@@ -498,18 +498,23 @@ summary {
   }
   .comentarios {
     text-align: left !important;
-    padding-left: 20% !important;
-    padding-right: 20% !important;
+    width: 80%;
+    margin: auto;
+    padding-left: 10% !important;
+    padding-right: 10% !important;
     padding-bottom: 2% !important;
     font-size: 1.4rem !important;
+    background-color: #0d356e;
     font-family: var(--bs-body-font-family) !important;
     font-weight: var(--bs-body-font-weight) !important;
     line-height: var(--bs-body-line-height) !important;
     color: var(--bs-body-color) !important;
+    padding: 35px;
+    border-radius: 20px;
   }
   .cotexto {
     font-size: 1.2rem;
-    color: var(--bs-body-color) !important;
+    color: #ffffff !important;
     font-weight: var(--bs-body-font-weight);
   }
   
@@ -521,7 +526,7 @@ summary {
   
   .fechaco {
     font-size: 0.8rem ;
-    color: #2c3e50 !important;
+    color: #ffffff !important;
   }
 progress {
   vertical-align: baseline;
@@ -667,6 +672,12 @@ progress {
   width: 180px;
   height: 180px;
 }
+.img-fluidbrand1 {
+  width: 180px;
+  height: 180px;
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 50%;
+}
 .img-fluidbrand:hover {
   opacity: 0.9;
 }
@@ -756,7 +767,7 @@ progress {
 }
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1320px;
+    max-width: 1400px;
   }
 }
 .row {
@@ -3836,7 +3847,6 @@ textarea.form-control-lg {
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
   --bs-navbar-toggler-font-size: 1.25rem;
-  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   --bs-navbar-toggler-border-color: rgba(0, 0, 0, 0.1);
   --bs-navbar-toggler-border-radius: 0.5rem;
   --bs-navbar-toggler-focus-width: 0.25rem;
@@ -3936,7 +3946,7 @@ textarea.form-control-lg {
   cursor: pointer;
   font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
   font-size: 100%;
-  height: 44px;
+  height: 35px;
   line-height: 1;
   margin: 10px 0 0;
   outline: none;
@@ -3972,7 +3982,7 @@ textarea.form-control-lg {
   cursor: pointer;
   font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
   font-size: 100%;
-  height: 44px;
+  height: 35px;
   line-height: 1;
   margin: 10px 0 0;
   outline: none;
