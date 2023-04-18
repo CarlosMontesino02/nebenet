@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from nebenet_app.views import *
+from django.contrib.auth import views as auth_views
+from nebenet_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +33,11 @@ urlpatterns = [
     path('usuarios/', User_List.as_view(), name="usuarios-lista"),
     path('usuarios/<int:pk>', User_Detail.as_view(), name="usuarios-detalles"),
     path('usuarios/<int:pk>/update', Update_User.as_view(), name="usuarios-update"),
+    #path('accounts/', include('django.contrib.auth.urls')),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password/password_reset_complete.html'), name='password_reset_complete'),
+    path("password_reset", views.password_reset_request, name="password_reset"),
 
     #Brands
     path('brand/', Brand_List.as_view(), name="brands"),
@@ -52,6 +59,7 @@ urlpatterns = [
     path('ticket/add/', Ticket_Create.as_view(), name="tickets_add"),
     path('ticket/<int:pk>/update', Ticket_Update.as_view(), name='tickets_update'),
     path('ticket/<int:pk>/delete/', Ticket_Delete.as_view(), name='tickets_delete'),
+    path('ticketsadmin/', Ticket_List.as_view(template_name='nebenet_app/ticket_admin.html'), name='tickets-admin'),
     
     #Coments
     path('coment/', Coment_List.as_view(), name="coments"),
