@@ -17,6 +17,14 @@ from .forms import *
 from django.http import HttpResponseForbidden
 from django.views.generic.detail import SingleObjectMixin
 from django.views import View
+from django.contrib.auth.forms import PasswordResetForm
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.core.exceptions import ValidationError
 
 def index (request):
     return render(request, 'nebenet_app/index.html')
@@ -51,10 +59,13 @@ class User_Detail(UserPassesTestMixin,LoginRequiredMixin, DetailView):
         context['tickets']=Ticket.objects.filter(ti_user=self.kwargs.get("pk"))
         return context
     def test_func(self):
-        try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
-        except:
-            return False
+        if self.request.user.is_superuser:
+            return True
+        else:
+            try:
+                return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            except:
+                return False
 
     
 # Brand
@@ -169,11 +180,16 @@ class TicketDetail(UserPassesTestMixin, LoginRequiredMixin, DetailView):
 class Ticket_Create(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.ti_user = self.request.user
-        obj.save()
-        return HttpResponseRedirect(reverse_lazy('tickets'))
+    def check(self, form):
+        a = form.save(commit=False)
+        if a.ti_personal == False:
+            raise ValidationError("Acepta")
+        else:
+            def form_valid(self, form):
+                obj = form.save(commit=False)
+                obj.ti_user = self.request.user
+                obj.save()
+                return HttpResponseRedirect(reverse_lazy('tickets'))
 
 class Ticket_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Ticket
@@ -228,3 +244,32 @@ class Coment_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     success_url='/tickets/'
     def test_func(self):
         return self.request.user.is_staff
+    
+#Password reset
+def password_reset_request(request):
+	if request.method == "POST":
+		password_reset_form = PasswordResetForm(request.POST)
+		if password_reset_form.is_valid():
+			data = password_reset_form.cleaned_data['email']
+			associated_users = User.objects.filter(Q(email=data))
+			if associated_users.exists():
+				for user in associated_users:
+					subject = "Password Reset Requested"
+					email_template_name = "password/password_reset_email.txt"
+					c = {
+					"email":user.email,
+					'domain':'127.0.0.1:8000',
+					'site_name': 'Nebenet',
+					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+					"user": user,
+					'token': default_token_generator.make_token(user),
+					'protocol': 'http',
+					}
+					email = render_to_string(email_template_name, c)
+					try:
+						send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+					except BadHeaderError:
+						return HttpResponse('Invalid header found.')
+					return redirect ("/password_reset/done/")
+	password_reset_form = PasswordResetForm()
+	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
