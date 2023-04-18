@@ -53,7 +53,7 @@ class search(ListView):
         query = self.request.GET.get("q")
         object_list=User.objects.filter(Q(username__icontains=query))
         return object_list
-
+    
 class User_List(LoginRequiredMixin, ListView):
     model = User
     template_name = "./nebenet_app/user_list.html"
@@ -188,16 +188,16 @@ class TicketDetail(UserPassesTestMixin, LoginRequiredMixin, DetailView):
 class Ticket_Create(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
-    def check(self, form):
-        a = form.save(commit=False)
-        if a.ti_personal == False:
-            raise ValidationError("Acepta")
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        if obj.ti_personal == True:
+            obj.ti_user = self.request.user
+            obj.save()
+            return HttpResponseRedirect(reverse_lazy('tickets'))
         else:
-            def form_valid(self, form):
-                obj = form.save(commit=False)
-                obj.ti_user = self.request.user
-                obj.save()
-                return HttpResponseRedirect(reverse_lazy('tickets'))
+            raise ValidationError("Acepta")
+
 
 class Ticket_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Ticket
