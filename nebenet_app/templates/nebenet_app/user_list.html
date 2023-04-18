@@ -19,7 +19,7 @@
                                 <p class="nombrepro">{{ user.username }}</p>
                             </div>
                             <a href="{{ user.pk }}"><img class="img-fluidbrand1" 
-                            {% if user.image %}src="/media/{{ user.image }}"{% else %} src="/static/assets/img/noprof.webp"{% endif %}"alt="..." /></a>
+                            {% if user.image %}src="/media/{{ user.image }}"{% else %} src="/static/assets/img/noprof.webp"{% endif %}alt="..." /></a>
                         </div>
                     </div>
             {% endfor %}
