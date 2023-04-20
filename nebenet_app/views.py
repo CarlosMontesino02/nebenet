@@ -133,6 +133,7 @@ class Product_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
         return self.request.user.is_staff
 
 #Company
+
 class Company_Detail(DetailView):
     model = Company
 
@@ -142,7 +143,6 @@ class Company_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('index')
     def test_func(self):
         return self.request.user.is_staff
-
 #Tickets
 class Ticket_List(ListView):
     model = Ticket
