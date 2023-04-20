@@ -26,11 +26,76 @@ AUTH_USER_MODEL = 'nebenet_app.User'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(7g6vcgr29@rf+fkcbcx6$ydmq9zv%(ah@90^asf^z0)&j*4nz'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production! 
+#Cuando está en Falso, static files NO VAN A CARGAR xd
 DEBUG = True
 #DEBUG = False
 ALLOWED_HOSTS = ['*']
 
+#Seguridad
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_PATH = '/;HttpOnly'
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SAMESITE = 'None'
+#SESSION_COOKIE_SAMESITE = 'None'
+
+# Content Security Policy
+
+CSP_IMG_SRC = ("'self'",'localhost','https://use.fontawesome.com')
+
+CSP_STYLE_SRC = ("'self'",'localhost','https://cdnjs.cloudflare.com')
+
+CSP_SCRIPT_SRC = ("'self'",'localhost', 'https://use.fontawesome.com','https://maps.googleapis.com')
+
+CSP_FONT_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                'https://fonts.gstatic.com')
+
+CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://fontawesome.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
+
+CSP_FRAME_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://fontawesome.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
+
+CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://fontawesome.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
+                "'sha256-I+QFOcT3LDOlEFeJu7TbhV9HTRNN5nU7b/hvsQ3lSzU='")
+
+CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://fontawesome.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
+
+CSP_FRAME_ANCESTORS = ("'self'")
+
+CSP_BASE_URI = ("'self'")
+
+CSP_SANDBOX = ('allow-modals','allow-scripts')
+
+CSP_REPORT_URI = ("'self'",'localhost')
+
+CSP_REQUIRE_SRI_FOR = ("'self'",'localhost')
+
+CSP_FORM_ACTION = ("'self'",'localhost')
+
+CSP_INCLUDE_NONCE_IN = ['script-src']
 
 # Application definition
 
@@ -44,7 +109,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'location_field.apps.DefaultConfig',
+    'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'uni_form'
 #Maps
 LOCATION_FIELD = {
     'map.provider': 'openstreetmap',
@@ -59,6 +126,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'nebenet.urls'
@@ -144,3 +212,6 @@ STATICFILES_DIRS=[
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+#COntra
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
