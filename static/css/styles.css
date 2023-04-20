@@ -484,6 +484,17 @@ summary {
   font-size: 28px;
   font-weight: 700;
 }
+.precio1 {
+  color: #ff1900;
+  font-size: 40px;
+  font-weight: 700;
+}
+.nombrepro1{
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #444;
+  font-weight: bold;
+  font-size: 25px;
+}
 
 .nombrepro{
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -3900,8 +3911,15 @@ textarea.form-control-lg {
   width: 50%;
 }
 .social-icon {
-  font-size: 29px;
   padding: 2px;
+  height: 29px;
+  width: 29px;
+  color: #1a252f !important; 
+}
+
+.social-iconp {
+  padding: 2px;
+  width: 29px;
   color: #1a252f !important; 
 }
 .button-63 {
@@ -11308,4 +11326,101 @@ html {
 
 .copyright {
   background-color: #1a252f;
+}
+
+.bodyco {
+  margin-top:8%;
+}
+.h1bodyco{
+  margin-left: 4%;
+}
+
+.divbodyco {
+  text-align: left;
+}
+
+.noli{
+  list-style: none
+}
+.divbodyco1 {
+  padding-left: 6%;
+}
+.ulbodyco{
+  font-size: 20px; 
+  text-align:left; 
+  margin-left: 4%; 
+  padding-right: 1.5em;
+}
+.ulbodyco1{
+  font-size: 20px; 
+  text-align:left;
+  padding-left: 32%;
+}
+
+.ulbodyco2 {
+  font-size: 25px; 
+  text-align:left; 
+  margin-left: 20%;
+}
+
+.cosabodyco{
+  width: 100%; 
+  height:300px;  
+}
+
+.titi{
+  font-size: 25px; 
+  text-align: center;
+}
+.tiu{
+  font-size: 20px; 
+  text-align: center;
+}
+.tima{
+  font-size: 25px; 
+  text-align: center;
+}
+
+.brap{
+  font-size: 25px;
+}
+.braul{
+  font-size: 20px; 
+  text-align:left; 
+  margin-left: 30%; 
+  padding-right: 1.5em; 
+  position: absolute;
+}
+
+.braim{
+  padding-bottom: 5%
+}
+
+.tipro{
+  padding-left: 10%; 
+  padding-right: 10%;
+}
+.tiimg{
+  padding-bottom: 5%
+}
+.cosabla{
+  color: #ffffff;
+}
+
+.tip{
+  font-size: 10px; 
+  padding-right: 10%;
+}
+.tim{
+  width: 50%;
+}
+
+.fullwidth{
+  width: 100% !important;
+}
+
+.listita{
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0
 }
