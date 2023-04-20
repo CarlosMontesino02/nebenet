@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<body style="margin-top:10%;">
+<body class="bodyco">
     {% if user.is_staff %}
     <p class="adminpro">Vuoi modificare il marca? <a href="{% url 'brands_update' brand.pk %}"><button class="button-9" role="button">Modificare</button></a><a href="{% url 'brands_delete' brand.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
 
     {% endif %}
     <center>
-    <p style="font-size: 25px;">{{ brand.bra_name }}</p>
+    <p class="brap">{{ brand.bra_name }}</p>
     {% if brand.bra_img  %}
-    <div class="d-flex flex-column"><img class="img-product"style="padding-bottom: 5%" src="/media/{{ brand.bra_img }}" alt="Image not found"/>
-            <ul style="font-size: 20px; text-align:left; margin-left: 30%; padding-right: 1.5em; position: absolute;">
+    <div class="d-flex flex-column"><img class="img-product braim" src="/media/{{ brand.bra_img }}" alt="Image not found"/>
+            <ul class="braul">
                 <p>Contact : {{ brand.bra_contact }}</p>
             </ul>
     </div>

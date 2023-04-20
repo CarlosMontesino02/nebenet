@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-<body style="margin-top:10%;">
+<body class="bodyco">
     <center>
-    <div style="padding-left: 6%;"><img class="profilepick" {% if user.image %} src="/media/{{ user.image }}" {% else %} src="/static/assets/img/noprof.webp"{% endif %}></div>
-    <ul style="font-size: 25px; text-align:left; margin-left: 20%;">
+    <div class="divbodyco1"><img class="profilepick" {% if user.image %} src="/media/{{ user.image }}" {% else %} src="/static/assets/img/noprof.webp"{% endif %}></div>
+    <ul class="ulbodyco2">
       <p>Nome utente: {{ user.username }}</p>
       <p>Email: {{ user.email }}</p>
       <p>La giornata è stata registrata: {{ user.date }}</p>
       <p>Tickets aperti:</p>
       {% for ticket in tickets %}
-      <li style="list-style: none"><a href="{% url 'tickets' %}">{{ ticket }}</a></li>
+      <li class="noli"><a href="{% url 'tickets' %}">{{ ticket }}</a></li>
       {% endfor %}
       <p></p>
       {% if request.user.username == user.username %}
       <p>Informazioni errate? <a href="{% url 'usuarios-update' user.pk %}" class="button">Modificare</a></p>
-      <p style="color:white;">.</p>
+      <p></p>
       {% else %}
       <p></p>
       {% endif %}

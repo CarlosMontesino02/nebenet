@@ -1,34 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<body style="margin-top:10%;">
+<body class="bodyco">
     {% if user.is_staff %}
     <p class="adminpro">Ticket risolto? <a href="{% url 'tickets_delete' ticket.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
 
     {% endif %}
     <center>
-    <p style="font-size: 25px; text-align: center;">{{ ticket.ti_title }}</p>
-    <p style="font-size: 20px; text-align: center;">{{ ticket.ti_user }}, {{ ticket.ti_time }}</p>
-    <p style="font-size: 25px; text-align: center;"></a>E-mail:<a href="mailto: {{ ticket.ti_mail }}"> {{ ticket.ti_mail }}</a></p>
-    <p style="padding-left: 10%; padding-right: 10%;">{{ ticket.Problema }}</p>
+    <p class="titi">{{ ticket.ti_title }}</p>
+    <p class="tiu">{{ ticket.ti_user }}, {{ ticket.ti_time }}</p>
+    <p class="tima"></a>E-mail:<a href="mailto: {{ ticket.ti_mail }}"> {{ ticket.ti_mail }}</a></p>
+    <p class="tipro">{{ ticket.Problema }}</p>
     {% if ticket.ti_img  %}
-    <div class="d-flex flex-column align-items-center"><img class="img-ticket"style="padding-bottom: 5%" src="/media/{{ ticket.ti_img }}" alt="Image not found"/>
+    <div class="d-flex flex-column align-items-center"><img class="img-ticket tiimg" src="/media/{{ ticket.ti_img }}" alt="Image not found"/>
     </div>
     </center> 
     {% endif %}
     <div class="comentarios">
     {% if user.is_staff%}
-    <p style="color: #ffffff">Chatta con {{ ticket.ti_user }}:</p>
+    <p class="cosabla">Chatta con {{ ticket.ti_user }}:</p>
     {% else %}
-    <p style="color: #ffffff">Chatta con l'amministrazione:</p>
+    <p class="cosabla">Chatta con l'amministrazione:</p>
     {% endif %}
     {% for coment in coments %}
-        <p><span class="fechaco">{{ coment.ti_time }}</span><span class="nomuser"> {{ coment.co_user }}</span><span style="color: #ffffff"> :  </span><span class="cotexto"> {{ coment }}</span></p>
+        <p><span class="fechaco">{{ coment.ti_time }}</span><span class="nomuser"> {{ coment.co_user }}</span><span class="cosabla"> :  </span><span class="cotexto"> {{ coment }}</span></p>
     {% endfor %}
     {% if user.is_authenticated %}
     <form action="" method="POST" id="main_form">
            <label for="coment" class="nomuser">{{ request.user.username }} :</label>
-           {{ coment_form.co_text }} {% csrf_token %} <button type="submit" class="button-623"><i class="fa-regular fa-paper-plane"></i></button></div>
+           {{ coment_form.co_text }} {% csrf_token %} <button type="submit" class="button-623">
+            Send</button></div>
     </form>
     <p></p>
     {% else %} <h2>You need to Login to comment</h2> 
