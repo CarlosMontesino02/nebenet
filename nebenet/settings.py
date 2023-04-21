@@ -36,9 +36,10 @@ ALLOWED_HOSTS = ['*']
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_PATH = '/;HttpOnly'
 #CSRF_COOKIE_SECURE = True
-#SESSION_COOKIE_SECURE = True
-#CSRF_COOKIE_SAMESITE = 'None'
-#SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Content Security Policy
 
@@ -52,6 +53,7 @@ CSP_FONT_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
                 'https://use.fontawesome.com',
                 'https://www.google.com',
+                'https://stackpath.bootstrapcdn.com',
                 'https://fonts.gstatic.com')
 
 CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
@@ -59,6 +61,7 @@ CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://fontawesome.com',
                 'https://use.fontawesome.com',
                 'https://www.google.com',
+                'https://stackpath.bootstrapcdn.com',
                 "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
 
 CSP_FRAME_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
@@ -73,6 +76,7 @@ CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://fontawesome.com',
                 'https://use.fontawesome.com',
                 'https://www.google.com',
+                'https://stackpath.bootstrapcdn.com',
                 "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
                 "'sha256-I+QFOcT3LDOlEFeJu7TbhV9HTRNN5nU7b/hvsQ3lSzU='")
 
@@ -80,6 +84,7 @@ CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
                 'https://fontawesome.com',
                 'https://use.fontawesome.com',
+                'https://stackpath.bootstrapcdn.com',
                 'https://www.google.com',
                 "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
 
@@ -87,13 +92,13 @@ CSP_FRAME_ANCESTORS = ("'self'")
 
 CSP_BASE_URI = ("'self'")
 
-CSP_SANDBOX = ('allow-modals','allow-scripts')
+CSP_SANDBOX = ('allow-modals','allow-scripts', 'allow-forms', 'allow-same-origin')
 
 CSP_REPORT_URI = ("'self'",'localhost')
 
 CSP_REQUIRE_SRI_FOR = ("'self'",'localhost')
 
-CSP_FORM_ACTION = ("'self'",'localhost')
+##CSP_FORM_ACTION = ("'self'",'localhost')
 
 CSP_INCLUDE_NONCE_IN = ['script-src']
 

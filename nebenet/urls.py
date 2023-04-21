@@ -61,7 +61,8 @@ urlpatterns = [
     path('ticket/<int:pk>/update', Ticket_Update.as_view(), name='tickets_update'),
     path('ticket/<int:pk>/delete/', Ticket_Delete.as_view(), name='tickets_delete'),
     path('ticketsadmin/', Ticket_List.as_view(template_name='nebenet_app/ticket_admin.html'), name='tickets-admin'),
-    
+    path('ticketsadmins/search', searchticket.as_view(template_name='nebenet_app/searchtickets.html'), name="searchti"),
+
     #Coments
     path('coment/', Coment_List.as_view(), name="coments"),
     path('coment/<int:pk>/', Coment_Detail.as_view(), name='coments_details'),
