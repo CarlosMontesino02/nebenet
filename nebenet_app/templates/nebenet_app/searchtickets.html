@@ -5,7 +5,7 @@
     <link href="/static/css/tabla.css" rel="stylesheet" />
 </header>
 <body>
-    <p class="adminpro"><h1>Lista dei tickets</h1>
+    <p class="adminpro"><h1>Lista dei tickets</h1> 
         {% if user.is_staff %}
         <div class="padding6" class="container">
             <form action="{% url 'searchti' %}" method="get" >
@@ -25,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for ticket in object_list %} 
+        {% for ticket in ticket_list %} 
         <tr>
             <td>{{ ticket.ti_time }}</td>
             <td> <a class="singleticket" href="/usuarios/{{ ticket.ti_user.pk }}">{{ ticket.ti_user }}</a></td>
