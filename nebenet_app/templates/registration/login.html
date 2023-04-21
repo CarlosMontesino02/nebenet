@@ -19,12 +19,12 @@
 	</head>
 	{% block content %}
 {% if form.errors %}
-<p style="margin-top: 40px; text-align: center; color: crimson;">El usuario o la contraseña son incorrectos.</p>
+<p class="plogin">El usuario o la contraseña son incorrectos.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p style="margin-top: 60px;">No tienes acceso a la página. Inserta un nombre que pueda acceder.</p>
+    <p class="plogin1">No tienes acceso a la página. Inserta un nombre que pueda acceder.</p>
     {% else %}
     <p>Por favor, inserta tu nombre de usuario.</p>
     {% endif %}
@@ -62,7 +62,7 @@
 									</label>
 								</div>
 								<div class="w-50 text-md-right">
-									<a href="#">Forgot Password</a>
+									<a href="{% url 'password_reset' %}">Ha dimenticato la password?</a>
 								</div>
 	            </div>
 	            <div class="form-group">
