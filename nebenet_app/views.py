@@ -144,6 +144,15 @@ class Company_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     def test_func(self):
         return self.request.user.is_staff
 #Tickets
+
+class searchticket(ListView):
+    model = Ticket
+    template_name="photanic_app/searchtickets.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=Ticket.objects.filter(Q(ti_title__icontains=query))
+        return object_list
+    
 class Ticket_List(ListView):
     model = Ticket
     def get_queryset(self):
