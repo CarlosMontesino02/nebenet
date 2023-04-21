@@ -11326,6 +11326,8 @@ html {
 
 .copyright {
   background-color: #1a252f;
+  bottom: 0px;
+  width:100%;
 }
 
 .bodyco {
@@ -11423,4 +11425,27 @@ html {
   list-style-type: none; 
   margin: 0; 
   padding: 0
+}
+
+.socialmedia{
+  color: #2c3e50;
+  font-size: 26px !important;
+}
+
+.divcenter{
+  text-align: center;
+}
+
+.atd {
+  text-decoration: none; 
+  color: green;
+}
+
+.etd{
+  text-decoration: none; 
+  color: red;
+}
+
+.padding6{
+  padding: 3%;
 }

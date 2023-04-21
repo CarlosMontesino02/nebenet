@@ -8339,3 +8339,13 @@ h1, h2, h3, h4, h5,
     @media (max-width: 767.98px) {
       .form-group .submit {
         top: 0; } }
+
+        .plogin{
+          margin-top: 40px; 
+          text-align: center; 
+          color: crimson;
+        }
+
+        .plogin1{
+          margin-top: 60px;
+        }
