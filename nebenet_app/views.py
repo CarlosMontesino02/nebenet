@@ -121,10 +121,19 @@ class Product_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
 
 class Product_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
-    fields = ['pro_name','pro_price','pro_description','pro_characteristics','pro_sale','pro_brand','pro_img','pro_salenumber']
+    fields = ['pro_name','pro_price','pro_description','pro_characteristics','pro_brand','pro_img']
     success_url = reverse_lazy('products')
     def test_func(self):
         return self.request.user.is_staff
+
+class Product_Update_Sale(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
+    model = Product
+    form_class = SaleForm
+    success_url = reverse_lazy('products')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
 
 class Product_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Product
@@ -202,6 +211,7 @@ class Ticket_Create(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         if obj.ti_personal == True:
             obj.ti_user = self.request.user
+            obj.ti_mail = self.request.user.email
             obj.save()
             return HttpResponseRedirect(reverse_lazy('tickets'))
         else:

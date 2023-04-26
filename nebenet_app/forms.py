@@ -28,13 +28,21 @@ class ProductForm(forms.ModelForm):
 		model =  Product
 		fields = ('pro_name','pro_price','pro_description','pro_characteristics','pro_brand','pro_img','pro_sale','pro_salenumber')
 
+class SaleForm(forms.ModelForm):
+	error_css_class = 'error-field'
+	required_css_class = 'required-field'
+	class Meta:
+		model =  Product
+		fields = ('pro_sale','pro_salenumber')
+
 class TicketForm(forms.ModelForm):
 	error_css_class = 'error-field'
 	required_css_class = 'required-field'
 	Problema = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
 	class Meta:
 		model =  Ticket
-		fields = ('ti_title','Problema','ti_mail','ti_img','ti_personal')
+		fields = ('ti_title','Problema','ti_img','ti_personal')
+
 
 class ComentForm(forms.ModelForm):
     class Meta:

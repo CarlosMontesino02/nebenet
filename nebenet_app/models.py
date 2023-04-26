@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from location_field.models.plain import PlainLocationField
+from django.core.validators import MaxValueValidator, MinValueValidator 
+
 # Create your models here.
 
 class User(AbstractUser):
@@ -28,13 +30,14 @@ class Brand(models.Model):
 
 class Product(models.Model):
     pro_name = models.CharField(max_length=50, blank=False)
+    pro_price_before = models.DecimalField(blank=True,max_digits=10, decimal_places=2)
     pro_price = models.DecimalField(max_digits=10, decimal_places=2)
     pro_description = models.CharField(max_length=1000, blank=False)
     pro_characteristics =  models.CharField(max_length=1000, blank=False)
     pro_sale = models.BooleanField()
     pro_brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     pro_img = models.ImageField(upload_to ='img/')
-    pro_salenumber = models.DecimalField(max_digits=2, decimal_places=0)
+    pro_salenumber = models.PositiveIntegerField(blank=True, default=10, validators=[MinValueValidator(1), MaxValueValidator(100)])
     cpu='cpu'
     gpu='gpu'
     none='N/A'
