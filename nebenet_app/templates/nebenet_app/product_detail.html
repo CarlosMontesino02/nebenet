@@ -4,7 +4,10 @@
 <body class="bodyco">
     <body class="bodyco">
         {% if user.is_staff %}
-        <p class="adminpro">Vuoi modificare il prodotto? <a href="{% url 'products_update' product.pk %}"><button class="button-9" role="button">Modificare</button></a><a href="{% url 'products_delete' product.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
+        <p class="adminpro">Vuoi modificare il prodotto? 
+            <a href="{% url 'products_update' product.pk %}"><button class="button-9" role="button">Modificare</button></a>
+            <a href="{% url 'products_delete' product.pk %}"><button class="button-91" role="button">Eliminare</button></a>
+            <a href="{% url 'products_update_sale' product.pk %}"><button class="button-9" role="button">Modificare Oferta</button></a></p>
     
         {% endif %}
         <center>
@@ -14,7 +17,11 @@
         <div calss="divbodyco">
             <ul class="ulbodyco1">
                 <p class="nombrepro1">{{ product.pro_name }}</p>
+                {% if product.pro_sale  %}
+                <p class="precio1sale">{{ product.pro_price }} €</p>
+                {% else  %}
                 <p class="precio1">{{ product.pro_price }} €</p>
+                {% endif %}
                 <p>Descrizione : {{ product.pro_description }}</p>
                 <p>Caratteristiche : {{ product.pro_characteristics }}</p>
                 <p>Tipo: {{ product.pro_type }}</p> 
