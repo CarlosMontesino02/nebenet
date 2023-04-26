@@ -52,6 +52,7 @@ urlpatterns = [
     path('product/<int:pk>/', Product_Detail.as_view(), name='products_details'),
     path('product/add/', Product_Create.as_view(), name="products_add"),
     path('product/<int:pk>/update', Product_Update.as_view(), name='products_update'),
+    path('product/<int:pk>/update/sale', Product_Update_Sale.as_view(), name='products_update_sale'),
     path('product/<int:pk>/delete/', Product_Delete.as_view(), name='products_delete'),
 #Mirar que pasa con las url xd
     #Tickets
