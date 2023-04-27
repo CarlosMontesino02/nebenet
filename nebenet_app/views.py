@@ -119,6 +119,7 @@ class Product_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
     def test_func(self):
         return self.request.user.is_staff
 
+#Si se cambia el precio base mientras hay una oferta, no se actualizará la oferta.
 class Product_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
     fields = ['pro_name','pro_price','pro_description','pro_characteristics','pro_brand','pro_img']
@@ -130,6 +131,26 @@ class Product_Update_Sale(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
     form_class = SaleForm
     success_url = reverse_lazy('products')
+
+    def form_valid(self,form):
+        sale = form.save(commit=False)
+        url=self.request.get_full_path()
+        urlcad=url.split("/")
+        obj=Product.objects.get(pk=int(urlcad[2]))
+        if sale.pro_sale == True:
+            obj.pro_sale = sale.pro_sale
+            obj.pro_salenumber = sale.pro_salenumber
+            a = obj.pro_price
+            b = sale.pro_salenumber
+            obj.pro_price_after = a-((a/100)*b)
+            obj.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            obj.pro_sale = sale.pro_sale
+            obj.pro_salenumber = sale.pro_salenumber
+            obj.pro_price_after = obj.pro_price
+            obj.save()
+            return HttpResponseRedirect(self.get_success_url())
 
     def test_func(self):
         return self.request.user.is_staff

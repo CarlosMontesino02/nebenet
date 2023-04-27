@@ -7,7 +7,7 @@
 <body>
     <p class="adminpro"><h1>Lista dei tickets</h1>
         {% if user.is_staff %}
-        <div class="padding6" class="container">
+        <div class="paddingticket" class="container">
             <form action="{% url 'searchti' %}" method="get" >
                 <input name="q" type="text" placeholder="Trova un ticket...">
             </form>

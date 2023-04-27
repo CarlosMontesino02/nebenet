@@ -30,7 +30,7 @@ class Brand(models.Model):
 
 class Product(models.Model):
     pro_name = models.CharField(max_length=50, blank=False)
-    pro_price_before = models.DecimalField(blank=True,max_digits=10, decimal_places=2)
+    pro_price_after = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
     pro_price = models.DecimalField(max_digits=10, decimal_places=2)
     pro_description = models.CharField(max_length=1000, blank=False)
     pro_characteristics =  models.CharField(max_length=1000, blank=False)

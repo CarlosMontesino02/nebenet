@@ -24,7 +24,11 @@
                             </div>
                             <a href="{{ product.pk }}"><img class="img-fluidbrand" src="/media/{{ product.pro_img }}" alt="..." /></a>
                         </div>
+                        {% if product.pro_sale  %}
+                        <p class="precio">{{ product.pro_price_after }} € <span class="oferta">  {{ product.pro_salenumber }}% off! </span></p>
+                        {% else  %}
                         <p class="precio">{{ product.pro_price }} €</p>
+                        {% endif %}
                     </div>
             {% endfor %}
           <li class="listita"> <a href="{{ product.pk }}">{{ product.pro_name }}</a> 
