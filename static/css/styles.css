@@ -490,10 +490,20 @@ summary {
   font-weight: 700;
 }
 .precio1sale {
-  color: #ff1900;
-  font-size: 40px;
-  font-weight: 300;
+  color: #545454;
+  font-size: 31px;
+  font-weight: 200;
   text-decoration: line-through;
+}
+.paddingticket{
+  padding-left: 5%;
+}
+.oferta {
+  color: #ffffff;
+  background-color: red;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 5px;
 }
 .nombrepro1{
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -11455,4 +11465,8 @@ html {
 
 .padding6{
   padding: 3%;
+}
+
+.contratop{
+  margin-top:8%;
 }
