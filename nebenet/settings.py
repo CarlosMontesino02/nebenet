@@ -62,14 +62,16 @@ CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://use.fontawesome.com',
                 'https://www.google.com',
                 'https://stackpath.bootstrapcdn.com',
-                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
+                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
 
 CSP_FRAME_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
                 'https://fontawesome.com',
                 'https://use.fontawesome.com',
                 'https://www.google.com',
-                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
+                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
 
 CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
@@ -78,7 +80,8 @@ CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://www.google.com',
                 'https://stackpath.bootstrapcdn.com',
                 "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
-                "'sha256-I+QFOcT3LDOlEFeJu7TbhV9HTRNN5nU7b/hvsQ3lSzU='")
+                "'sha256-I+QFOcT3LDOlEFeJu7TbhV9HTRNN5nU7b/hvsQ3lSzU='",
+                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
 
 CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
@@ -86,7 +89,8 @@ CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://use.fontawesome.com',
                 'https://stackpath.bootstrapcdn.com',
                 'https://www.google.com',
-                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='")
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
+                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
 
 CSP_FRAME_ANCESTORS = ("'self'")
 
