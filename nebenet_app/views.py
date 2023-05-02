@@ -106,31 +106,44 @@ class Brand_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
         return self.request.user.is_staff
     
 # Products
+class searchproduct(ListView):
+    model = Ticket
+    template_name="photanic_app/searchproducts.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=Product.objects.filter(Q(pro_name__icontains=query))
+        return object_list
+
 class Product_List(ListView):
     model = Product
 
 class Product_Detail(DetailView):
     model = Product
 
-class Product_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
+class Product_Admin_List(UserPassesTestMixin,LoginRequiredMixin,ListView):
     model = Product
-    form_class = ProductForm
-    success_url = reverse_lazy('products')
     def test_func(self):
         return self.request.user.is_staff
 
-#Si se cambia el precio base mientras hay una oferta, no se actualizará la oferta.
+
+class Product_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('products_admin_list')
+    def test_func(self):
+        return self.request.user.is_staff
+
 class Product_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
     fields = ['pro_name','pro_price','pro_description','pro_characteristics','pro_brand','pro_img']
-    success_url = reverse_lazy('products')
+    success_url = reverse_lazy('products_admin_list')
     def test_func(self):
         return self.request.user.is_staff
 
 class Product_Update_Sale(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
     form_class = SaleForm
-    success_url = reverse_lazy('products')
+    success_url = reverse_lazy('products_admin_list')
 
     def form_valid(self,form):
         sale = form.save(commit=False)
