@@ -2,7 +2,9 @@
 {% block content %}
 {% load static %}
 <header class="masthead">
-    
+	<meta
+	name="description"
+	content="Nebenet ticket list">
 </header>
 <center>
 <p class="adminpro"><h1>Lista dei tickets</h1> {% if user.is_staff %}<a href="{% url 'tickets-admin' %}">

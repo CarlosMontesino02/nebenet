@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header>
+    <link href="/static/css/tabla.css" rel="stylesheet" />
+</header>
+<body>
+    <p class="adminpro"><h1>Elenco dei prodotti</h1> 
+        {% if user.is_staff %}
+        <div class="padding6" class="container">
+            <form action="{% url 'searchpro' %}" method="get" >
+                <input name="q" type="text" placeholder="Trova proditti...">
+            </form>
+        </div>
+        {% endif %}
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Marche</th>
+                <th>Prezzo </th>
+                <th>Offerta</th>
+                <th>Nuovo prezzo</th>
+                <th>Opzioni</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in object_list %} 
+            <tr>
+                <td><a class="singleticket" href="/product/{{ product.pk }}">{{ product.pro_name }}</a></td>
+                <td> <a class="singleticket" href="/brand/{{ product.pro_brand.pk }}">{{ product.pro_brand}}</a></td>
+                <td><span class="tabalaprecio">{{ product.pro_price }}€<span></td>
+                {% if product.pro_sale %}
+                <td><span class="tabalaoferta">{{ product.pro_salenumber}}%<span></td>
+                <td><span class="tabalaprecio">{{ product.pro_price_after}}€<span></td>
+                {% else %}
+                <td>None</td>
+                <td>None</td>
+                {% endif %}
+                <td><span><a  class="atd2"   href="{% url 'products_update_sale' product.pk %}">Modificare Oferta </a></span><a class="atd" href="{% url 'products_update' product.pk %}">Modificare </a><span></span> <a class="etd" href="{% url 'products_delete' product.pk %}"> Eliminare</a></td>
+            </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+</div>
+</body>
+{% endblock %}
