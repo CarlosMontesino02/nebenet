@@ -49,6 +49,8 @@ urlpatterns = [
 
     #Products
     path('product/', Product_List.as_view(), name="products"),
+    path('productadmin/', Product_Admin_List.as_view(template_name='nebenet_app/products_admin.html'), name='products_admin_list'),
+    path('productadmin/search', searchproduct.as_view(template_name='nebenet_app/searchproducts.html'), name="searchpro"),
     path('product/<int:pk>/', Product_Detail.as_view(), name='products_details'),
     path('product/add/', Product_Create.as_view(), name="products_add"),
     path('product/<int:pk>/update', Product_Update.as_view(), name='products_update'),
