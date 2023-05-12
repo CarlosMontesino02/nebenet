@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
 from pathlib import Path
 import django_extensions
 import os
@@ -28,24 +27,47 @@ SECRET_KEY = 'django-insecure-(7g6vcgr29@rf+fkcbcx6$ydmq9zv%(ah@90^asf^z0)&j*4nz
 
 # SECURITY WARNING: don't run with debug turned on in production! 
 #Cuando está en Falso, static files NO VAN A CARGAR xd
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 #Seguridad
-SESSION_COOKIE_HTTPONLY = True
+
 SESSION_COOKIE_PATH = '/;HttpOnly'
-#CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SAMESITE = 'None'
-CORS_ORIGIN_ALLOW_ALL = True
 
 # Content Security Policy
 
-CSP_IMG_SRC = ("'self'",'localhost','https://use.fontawesome.com')
+CSP_IMG_SRC = ("'self'",'localhost',
+               'https://use.fontawesome.com','http://a.tile.openstreetmap.org'
+               ,'http://c.tile.openstreetmap.org','http://b.tile.openstreetmap.org')
 
 CSP_STYLE_SRC = ("'self'",'localhost','https://cdnjs.cloudflare.com')
+
+CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://fontawesome.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                'https://stackpath.bootstrapcdn.com',
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
+                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='",
+                "'sha256-28J4mQEy4Sqd0R+nZ89dOl9euh+Y3XvT+VfXD5pOiOE='",
+                "'sha256-xEhJzjht+0lH20N8vjL+kTen6DJNXp2fPh8ZQngXdSo='",
+                "'sha256-WXvI+5CRAEjIL/wNMA+uH59eXDfnQZvPz46BlCqB4zE='")
+
+CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com',
+                'https://fontawesome.com',
+                'https://use.fontawesome.com',
+                'https://www.google.com',
+                'https://stackpath.bootstrapcdn.com',
+                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
+                "'sha256-I+QFOcT3LDOlEFeJu7TbhV9HTRNN5nU7b/hvsQ3lSzU='",
+                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='",
+                "'sha256-xEhJzjht+0lH20N8vjL+kTen6DJNXp2fPh8ZQngXdSo='",
+                "'sha256-WXvI+5CRAEjIL/wNMA+uH59eXDfnQZvPz46BlCqB4zE='",
+                )
 
 CSP_SCRIPT_SRC = ("'self'",'localhost', 'https://use.fontawesome.com','https://maps.googleapis.com')
 
@@ -56,15 +78,6 @@ CSP_FONT_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://stackpath.bootstrapcdn.com',
                 'https://fonts.gstatic.com')
 
-CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
-                'https://cdnjs.cloudflare.com',
-                'https://fontawesome.com',
-                'https://use.fontawesome.com',
-                'https://www.google.com',
-                'https://stackpath.bootstrapcdn.com',
-                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
-                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
-
 CSP_FRAME_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
                 'https://fontawesome.com',
@@ -73,38 +86,28 @@ CSP_FRAME_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
                 "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
 
-CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
-                'https://cdnjs.cloudflare.com',
-                'https://fontawesome.com',
-                'https://use.fontawesome.com',
-                'https://www.google.com',
-                'https://stackpath.bootstrapcdn.com',
-                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
-                "'sha256-I+QFOcT3LDOlEFeJu7TbhV9HTRNN5nU7b/hvsQ3lSzU='",
-                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
-
-CSP_STYLE_SRC_ELEM = ("'self'",'localhost', 'https://fonts.googleapis.com',
-                'https://cdnjs.cloudflare.com',
-                'https://fontawesome.com',
-                'https://use.fontawesome.com',
-                'https://stackpath.bootstrapcdn.com',
-                'https://www.google.com',
-                "'sha256-Jc7XaRBVYMy6h6FvjL32miHrOGOxYV+OP4swZ/9Gysw='",
-                "'sha256-sYu/25NU93kGpqF4iAS8RqqmKvI/Mdk6QYKcIW+5ZuI='")
-
-CSP_FRAME_ANCESTORS = ("'self'")
-
+CSP_SANDBOX = ('allow-forms','allow-top-navigation','allow-scripts','allow-same-origin')
 CSP_BASE_URI = ("'self'")
+CSP_FRAME_ANCESTORS = ("'self'")
+CSP_OBJECT_SRC = ("'self'", )
+CSP_FORM_ACTION = ("'self'", )
+CSP_INCLUDE_NONCE_IN = ('script-src', )
+CSP_MANIFEST_SRC = ("'self'", )
+CSP_WORKER_SRC = ("'self'", )
+CSP_MEDIA_SRC = ("'self'", )
 
-CSP_SANDBOX = ('allow-modals','allow-scripts', 'allow-forms', 'allow-same-origin')
+#CORS
 
-CSP_REPORT_URI = ("'self'",'localhost')
+CORS_ALLOWED_ORIGINS = [
+    "https://maps.googleapis.com",
+    "https://www.google.com",
+]
 
-CSP_REQUIRE_SRI_FOR = ("'self'",'localhost')
+CORS_ALLOWED_ORIGIN_REGEXES = [
+r"^https://\w+\.maps.googleapis\.com$",
+r"^https://\w+\.google\.com$",
+]
 
-##CSP_FORM_ACTION = ("'self'",'localhost')
-
-CSP_INCLUDE_NONCE_IN = ['script-src']
 
 # Application definition
 
@@ -119,6 +122,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'location_field.apps.DefaultConfig',
     'crispy_forms',
+    'crispy_bootstrap5',
+    'corsheaders'
 ]
 CRISPY_TEMPLATE_PACK = 'uni_form'
 #Maps
@@ -136,6 +141,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'nebenet.urls'
