@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+<httpProtocol>
+    <customHeaders>
+        <add name="X-Frame-Options" value="SAMEORIGIN" />
+    </customHeaders>
+</httpProtocol>
+<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff"/>
 <body class="bodyco">
     <h1 class="masthead2 h1bodyco">Vieni a trovarci in negozio</h1>
     <div class="divbodyco">

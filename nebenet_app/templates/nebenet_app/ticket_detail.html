@@ -27,7 +27,7 @@
     {% endfor %}
     {% if user.is_authenticated %}
     <form action="" method="POST" id="main_form">
-           <label for="coment" class="nomuser">{{ request.user.username }} :</label>
+           <label form="coment" class="nomuser">{{ request.user.username }} :</label>
            {{ coment_form.co_text }} {% csrf_token %} <button type="submit" class="button-623">
             ➭</button></div>
     </form>
