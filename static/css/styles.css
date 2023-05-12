@@ -11534,3 +11534,28 @@ html {
 .dropdown-content a:hover {background-color: #2c3e50;}
 
 .dropdown:hover .dropdown-content {display: block;}
+
+.padding3 {
+  padding: 3%
+}
+.alineacentro{
+  text-align: center;
+}
+
+.listasearch {
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0;
+}
+
+.nostyle{
+  list-style: none;
+}
+
+.fuente35{
+  font-size:35px;
+}
+
+  .helptext{
+    visibility: hidden;
+  }
