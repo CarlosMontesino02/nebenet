@@ -75,4 +75,10 @@ urlpatterns = [
     #Company
     path('company/<int:pk>/', Company_Detail.as_view(), name='company_details'),
     path('company/<int:pk>/update', Company_Update.as_view(), name='company_update'),
+    #E-comerce
+    path('vitrina', vitrina.as_view(), name='homepage'),
+    path('store', store , name='store'),
+    path('cart', Cart.as_view() , name='cart'),
+    path('check-out', CheckOut.as_view() , name='checkout'),
+    path('orders', OrderView.as_view(), name='orders'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
