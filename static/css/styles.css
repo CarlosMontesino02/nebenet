@@ -4535,7 +4535,6 @@ textarea.form-control-lg {
   padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
   color: var(--bs-card-cap-color);
   background-color: var(--bs-card-cap-bg);
-  border-top: var(--bs-card-border-width) solid var(--bs-card-border-color);
 }
 .card-footer:last-child {
   border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);
@@ -11475,7 +11474,9 @@ html {
   text-decoration: none !important; 
   color: blue;
 }
-
+.filtro{
+  display: flex;
+}
 .etd{
   text-decoration: none; 
   color: red;
@@ -11485,6 +11486,9 @@ html {
   padding: 3%;
 }
 
+.padding10{
+  padding: 9%;
+}
 .contratop{
   margin-top:8%;
 }
@@ -11559,3 +11563,11 @@ html {
   .helptext{
     visibility: hidden;
   }
+
+.cartawi{
+  width: 18rem;
+}
+
+.paddingtop{
+  padding-top: 8%;
+}
