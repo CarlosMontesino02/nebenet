@@ -334,3 +334,95 @@ def password_reset_request(request):
 					return redirect ("/password_reset/done/")
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+#E-comerce
+
+class vitrina(View):
+
+    def post(self , request):
+        product = request.POST.get('product')
+        remove = request.POST.get('remove')
+        cart = request.session.get('cart')
+        if cart:
+            quantity = cart.get(product)
+            if quantity:
+                if remove:
+                    if quantity<=1:
+                        cart.pop(product)
+                    else:
+                        cart[product]  = quantity-1
+                else:
+                    cart[product]  = quantity+1
+
+            else:
+                cart[product] = 1
+        else:
+            cart = {}
+            cart[product] = 1
+
+        request.session['cart'] = cart
+        print('cart' , request.session['cart'])
+        return redirect('homepage')
+
+
+
+    def get(self , request):
+        # print()
+        return HttpResponseRedirect(f'/store')
+
+def store(request):
+    cart = request.session.get('cart')
+    if not cart:
+        request.session['cart'] = {}
+    products = None
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = Product.get_all_products_by_categoryid(categoryID)
+    else:
+        products = Product.get_all_products();
+
+    data = {}
+    data['products'] = products
+    data['categories'] = categories
+
+    print('you are : ', request.session.get('email'))
+    return render(request, 'vitrina.html', data)
+
+class Cart(View):
+    def get(self , request):
+        ids = list(request.session.get('cart').keys())
+        products = Product.get_products_by_id(ids)
+        print(products)
+        return render(request , 'cart.html' , {'products' : products} )
+    
+class OrderView(View):
+
+
+    def get(self , request ):
+        user = request.session.get('user')
+        orders = Order.get_orders_by_user(user)
+        print(orders)
+        return render(request , 'orders.html'  , {'orders' : orders})
+    
+class CheckOut(View):
+    def post(self, request):
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        user = request.session.get('user')
+        cart = request.session.get('cart')
+        products = Product.get_products_by_id(list(cart.keys()))
+        print(address, phone, user, cart, products)
+
+        for product in products:
+            print(cart.get(str(product.id)))
+            order = Order(user=User(id=user),
+                          product=product,
+                          price=product.price,
+                          address=address,
+                          phone=phone,
+                          quantity=cart.get(str(product.id)))
+            order.save()
+        request.session['cart'] = {}
+
+        return redirect('cart')

@@ -19,6 +19,22 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('usuarios-detalles', kwargs={'pk': self.pk})
+    # to save the data
+    def register(self):
+        self.save()
+  
+    @staticmethod
+    def get_customer_by_email(email):
+        try:
+            return User.objects.get(email=email)
+        except:
+            return False
+  
+    def isExists(self):
+        if User.objects.filter(email=self.email):
+            return True
+  
+        return False
 
 class Brand(models.Model):
     bra_name = models.CharField(max_length=50, blank=False)
@@ -27,6 +43,16 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.bra_name
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+  
+    @staticmethod
+    def get_all_categories():
+        return Category.objects.all()
+  
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     pro_name = models.CharField(max_length=50, blank=False)
@@ -38,45 +64,24 @@ class Product(models.Model):
     pro_brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     pro_img = models.ImageField(upload_to ='img/')
     pro_salenumber = models.PositiveIntegerField(blank=True, default=10, validators=[MinValueValidator(1), MaxValueValidator(100)])
-    cpu='cpu'
-    gpu='gpu'
-    none='N/A'
-    schedamadre='Scheda madre'
-    hdd='hdd'
-    ssd='ssd'
-    m2='m.2'
-    caso='caso'
-    ram='ram'
-    ae='Alimentazione elettrica'
-    vent='ventilazione'
-    per='periferica'
-    laptop='laptop'
-    pc='computer'
-    COMPONENT = [
-        (cpu,'CPU'),
-        (gpu,'GPU'),
-        (schedamadre,'Scheda madre'),
-        (hdd,'HDD'),
-        (ssd,'SSD'),
-        (m2,'M.2'),
-        (ram,'RAM'),
-        (caso,'Caso'),
-        (ae,'Alimentazione elettrica'),
-        (vent,'Ventilazione'),
-        (per,'Periferica'),
-        (pc,'Computer'),
-        (laptop,'computer portatile'),
-        (none,'none'),
-    ]
-    pro_type = models.CharField(
-    'Component*',
-    max_length=23,
-    choices=COMPONENT,
-    default='none',
-    null=True
-    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     def __str__(self):
         return self.pro_name
+    
+    @staticmethod
+    def get_products_by_id(ids):
+        return Product.objects.filter(id__in=ids)
+  
+    @staticmethod
+    def get_all_products():
+        return Product.objects.all()
+  
+    @staticmethod
+    def get_all_products_by_categoryid(category_id):
+        if category_id:
+            return Product.objects.filter(category=category_id)
+        else:
+            return Product.get_all_products()
 
 class Company(models.Model):
     co_name = models.CharField(max_length=30, blank=False)
@@ -95,13 +100,6 @@ class Ratings(models.Model):
     ra_number = models.IntegerField(choices=rates)
     ra_text = models.CharField(max_length=800, blank=False)
 
-class Cart(models.Model):
-    sc_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    sc_pro = models.ManyToManyField(Product)
-    sc_price = models.DecimalField(max_digits=11, decimal_places=2)
-    sc_quantity = models.IntegerField()
-    def __str__(self):
-        return self.sc_user
     
 class Ticket(models.Model):
     ti_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -121,3 +119,23 @@ class Coment(models.Model):
     ti_time = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.co_text
+
+#E-COMERCE
+class Order(models.Model):
+    product = models.ForeignKey(Product,
+                                on_delete=models.CASCADE)
+    customer = models.ForeignKey(User,
+                                 on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.IntegerField()
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date = models.DateField(auto_now=True)
+    status = models.BooleanField(default=False)
+  
+    def placeOrder(self):
+        self.save()
+  
+    @staticmethod
+    def get_orders_by_customer(customer_id):
+        return Order.objects.filter(customer=customer_id).order_by('-date')
