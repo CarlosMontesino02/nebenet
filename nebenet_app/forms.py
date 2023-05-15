@@ -27,7 +27,7 @@ class ProductForm(forms.ModelForm):
 	pro_characteristics = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
 	class Meta:
 		model =  Product
-		fields = ('pro_name','pro_price','pro_description','pro_characteristics','pro_brand','pro_img','pro_sale','pro_salenumber')
+		fields = ('pro_name','pro_price','category','pro_description','pro_characteristics','pro_brand','pro_img','pro_sale','pro_salenumber')
 
 class SaleForm(forms.ModelForm):
 	error_css_class = 'error-field'

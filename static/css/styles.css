@@ -562,7 +562,54 @@ progress {
 [hidden] {
   display: none !important;
 }
+.padding7top{
+  padding-top: 10%;
+}
+.busqueda{
+  position:flex;
+  padding-left: 15%;
+  
+}
 
+.searchbar{
+  width: 60%;
+}
+/*Filto*/
+.dropbtn1 {
+  color: rgb(0, 0, 0);
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown1 {
+  position: relative;
+  max-width: 10%;
+  float: left;
+  padding-left: 15%;
+}
+
+.dropdown-content1 {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  z-index: 1;
+  border-radius: 10px;
+  overflow-y: scroll;
+  max-height: 400px;
+}
+
+.dropdown-content1 a {
+  color: rgb(0, 0, 0);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-style: solid;
+}
+
+.dropdown-content1 a:hover {background-color: #d4d4d4;}
+  .dropdown1:hover .dropdown-content1 {display: block;}
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
@@ -4569,7 +4616,9 @@ textarea.form-control-lg {
 .card-img,
 .card-img-top,
 .card-img-bottom {
-  width: 100%;
+  width: 270px;
+  height: 270px;
+  padding: 10px;
 }
 
 .card-img,
@@ -11474,9 +11523,6 @@ html {
   text-decoration: none !important; 
   color: blue;
 }
-.filtro{
-  display: flex;
-}
 .etd{
   text-decoration: none; 
   color: red;
@@ -11571,3 +11617,4 @@ html {
 .paddingtop{
   padding-top: 8%;
 }
+
