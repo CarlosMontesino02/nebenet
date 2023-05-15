@@ -107,8 +107,16 @@ class Brand_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     
 # Products
 class searchproduct(ListView):
-    model = Ticket
+    model = Product
     template_name="photanic_app/searchproducts.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=Product.objects.filter(Q(pro_name__icontains=query))
+        return object_list
+
+class searchvitrina(ListView):
+    model = Product
+    template_name="photanic_app/searchvitrina.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
         object_list=Product.objects.filter(Q(pro_name__icontains=query))

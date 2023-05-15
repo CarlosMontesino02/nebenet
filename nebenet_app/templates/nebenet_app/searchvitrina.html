@@ -28,7 +28,7 @@
 		<!-- all products -->
 		<div id='products' class="col-lg-9 mx-auto">
 			<div class="row mx-auto">
-				{% for product in products %}
+				{% for product in object_list %}
 				<div class="card mx-auto mb-3 cartawi" id="{{product.id}}">
 					<a href="/product/{{ product.pk }}"><img class="card-img-top" src="/media/{{ product.pro_img }}" alt="..." /></a>
 					<div class="card-body">
