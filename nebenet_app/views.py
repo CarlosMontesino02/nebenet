@@ -122,9 +122,6 @@ class searchvitrina(ListView):
         object_list=Product.objects.filter(Q(pro_name__icontains=query))
         return object_list
 
-class Product_List(ListView):
-    model = Product
-
 class Product_Detail(DetailView):
     model = Product
 
@@ -421,16 +418,17 @@ class CheckOut(View):
     def post(self, request):
         address = request.POST.get('address')
         phone = request.POST.get('phone')
-        user = request.session.get('user')
+        user = request.user.id
         cart = request.session.get('cart')
         products = Product.get_products_by_id(list(cart.keys()))
+        print('-------------------------------')
         print(address, phone, user, cart, products)
-
+        print('-------------------------------')    
         for product in products:
             print(cart.get(str(product.id)))
-            order = Order(user=User(id=user),
+            order = Order(customer=User(id=user),
                           product=product,
-                          price=product.price,
+                          price=product.pro_price,
                           address=address,
                           phone=phone,
                           quantity=cart.get(str(product.id)))

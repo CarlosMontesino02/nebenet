@@ -48,7 +48,6 @@ urlpatterns = [
     path('brand/<int:pk>/delete/', Brand_Delete.as_view(), name='brands_delete'),
 
     #Products
-    path('product/', Product_List.as_view(), name="products"),
     path('productadmin/', Product_Admin_List.as_view(template_name='nebenet_app/products_admin.html'), name='products_admin_list'),
     path('productadmin/search', searchproduct.as_view(template_name='nebenet_app/searchproducts.html'), name="searchpro"),
     path('product/<int:pk>/', Product_Detail.as_view(), name='products_details'),

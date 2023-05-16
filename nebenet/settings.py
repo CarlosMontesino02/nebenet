@@ -69,7 +69,8 @@ CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 "'sha256-WXvI+5CRAEjIL/wNMA+uH59eXDfnQZvPz46BlCqB4zE='",
                 )
 
-CSP_SCRIPT_SRC = ("'self'",'localhost', 'https://use.fontawesome.com','https://maps.googleapis.com')
+CSP_SCRIPT_SRC = ("'self'",'localhost', 'https://use.fontawesome.com','https://maps.googleapis.com','https://maxcdn.bootstrapcdn.com',
+                  'https://cdnjs.cloudflare.com','https://code.jquery.com')
 
 CSP_FONT_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',
