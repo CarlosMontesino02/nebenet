@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
 {% load cart %}
 {% load custom_filter %}
 <!-- filter -->
@@ -38,32 +36,31 @@
                         {% else  %}
                         <p class="precio">{{ product.pro_price }} €</p>
                         {% endif %}
-						<!-- {{product | is_in_cart:request.session.cart }} -->
 					</div>
 
 					<div class="card-footer no-gutters">
 
 						{% if product|is_in_cart:request.session.cart %}
 						<div class="row no-gutters">
-							<form action="/#{{product.id}}" class="col-2 " method="post">
+							<form action="{% url 'vitrina' %}" class="col-2 " method="post">
 								{% csrf_token %}
 								<input hidden type="text" name='product' value='{{product.id}}'>
 								<input hidden type="text" name='remove' value='True'>
 								<input type="submit" value=" - " class="btn btn-block btn-success border-right">
 							</form>
 							<div class="text-center col btn btn-success">{{product|cart_quantity:request.session.cart}} in Cart</div>
-							<form action="/#{{product.id}}" class="col-2 " method="post">
+							<form action="{% url 'vitrina' %}" class="col-2 " method="post">
 								{% csrf_token %}
 								<input hidden type="text" name='product' value='{{product.id}}'>
 								<input type="submit" value=" + " class="btn btn-block btn-success border-left">
 							</form>
 						</div>
 						{% else %}
-						<form action="/#{{product.id}}" method="POST" class="btn-block">
+						<form action="{% url 'vitrina' %}" method="POST" class="btn-block">
 							{% csrf_token %}
 							<input hidden type="text" name='product' value='{{product.id}}'>
 							<input type="submit" class="float-right btn btn-success form-control"
-								value="Add To Cart">
+							value="Add To Cart">
 						</form>
 						{% endif %}
 

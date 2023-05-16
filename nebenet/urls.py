@@ -76,9 +76,9 @@ urlpatterns = [
     path('company/<int:pk>/', Company_Detail.as_view(), name='company_details'),
     path('company/<int:pk>/update', Company_Update.as_view(), name='company_update'),
     #E-comerce
-    path('vitrina', vitrina.as_view(), name='homepage'),
+    path('vitrina', vitrina.as_view(), name='vitrina'),
     path('vitrina/search', searchvitrina.as_view(template_name='nebenet_app/searchvitrina.html'), name="searchvi"),
-    path('store', store , name='store'),
+    path('store/', store , name='store'),
     path('cart', Cart.as_view() , name='cart'),
     path('check-out', CheckOut.as_view() , name='checkout'),
     path('orders', OrderView.as_view(), name='orders'),

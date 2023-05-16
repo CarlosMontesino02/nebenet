@@ -648,6 +648,10 @@ progress {
   }
 }
 
+.cartimage{
+  height: 80px;
+}
+
 .display-3 {
   font-size: calc(1.525rem + 3.3vw);
   font-weight: 300;

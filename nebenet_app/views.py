@@ -346,11 +346,14 @@ def password_reset_request(request):
 #E-comerce
 
 class vitrina(View):
-
     def post(self , request):
+        print("Post method called")
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
+        print('-----------------------')
+        print(cart)
+        print('-----------------------')
         if cart:
             quantity = cart.get(product)
             if quantity:
@@ -369,10 +372,8 @@ class vitrina(View):
             cart[product] = 1
 
         request.session['cart'] = cart
-        print('cart' , request.session['cart'])
-        return redirect('homepage')
-
-
+        print('cart', request.session['cart'])
+        return redirect('vitrina')  # Redirigir a la vista 'vitrina'
 
     def get(self , request):
         # print()
@@ -381,31 +382,34 @@ class vitrina(View):
 def store(request):
     cart = request.session.get('cart')
     if not cart:
-        request.session['cart'] = {}
+        cart = {}
+        request.session['cart'] = cart
+
     products = None
     categories = Category.get_all_categories()
     categoryID = request.GET.get('category')
     if categoryID:
         products = Product.get_all_products_by_categoryid(categoryID)
     else:
-        products = Product.get_all_products();
+        products = Product.get_all_products()
 
     data = {}
     data['products'] = products
     data['categories'] = categories
-
-    print('you are : ', request.session.get('email'))
+    data['cart'] = cart  # Agregar el carrito al diccionario de datos
+    print('you are:', request.user.username)
+    print(cart)
     return render(request, 'vitrina.html', data)
+
 
 class Cart(View):
     def get(self , request):
         ids = list(request.session.get('cart').keys())
         products = Product.get_products_by_id(ids)
         print(products)
-        return render(request , 'cart.html' , {'products' : products} )
+        return render(request , 'cart.html' , {'products' : products})
     
 class OrderView(View):
-
 
     def get(self , request ):
         user = request.session.get('user')
