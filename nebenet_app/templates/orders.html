@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
-<div class="container">
+<div class="container padding7top">
    <div class="border rounded p-4 m-4">
         <p class="display-4 pl-4 ml-4">Your Orders</p>
         <hr>
@@ -21,8 +19,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-                
+            <tbody>                
                 {% for order in orders %}
                 <tr>
                     <td>{{forloop.counter}}</td>

@@ -408,11 +408,13 @@ class Cart(View):
     
 class OrderView(View):
 
+
     def get(self , request ):
-        user = request.session.get('user')
-        orders = Order.get_orders_by_user(user)
+        customer = request.user.id
+        orders = Order.get_orders_by_customer(customer)
         print(orders)
         return render(request , 'orders.html'  , {'orders' : orders})
+
     
 class CheckOut(View):
     def post(self, request):
@@ -423,7 +425,7 @@ class CheckOut(View):
         products = Product.get_products_by_id(list(cart.keys()))
         print('-------------------------------')
         print(address, phone, user, cart, products)
-        print('-------------------------------')    
+        print('-------------------------------')
         for product in products:
             print(cart.get(str(product.id)))
             order = Order(customer=User(id=user),
@@ -434,5 +436,4 @@ class CheckOut(View):
                           quantity=cart.get(str(product.id)))
             order.save()
         request.session['cart'] = {}
-
         return redirect('cart')
