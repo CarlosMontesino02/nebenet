@@ -51,13 +51,17 @@
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'tickets' %}">I miei tickets</a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'orders' %}">I miei orders</a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'usuarios-update' request.user.pk %}">Opzioni</a>
-                                    <a class="nav-link" href="/cart">Cart 
-                                      <span class="badge badge-success">{{request.session.cart.keys|length}}</span>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/cart">Cart 
+                                      <span>{{request.session.cart.keys|length}}</span>
                                       <span class="sr-only">(current)</span></a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'logout' %}">Log Out</a>
                               </div>
                             </div>
                         {% else %}
+                        <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/cart">Cart 
+                            <span>{{request.session.cart.keys|length}}</span>
+                            <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'login' %}">Login</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'user-add' %}">Registrate</a></li>
                         {% endif %}

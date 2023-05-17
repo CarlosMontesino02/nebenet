@@ -11632,4 +11632,23 @@ html {
 .paddingtop{
   padding-top: 8%;
 }
-
+.badge-success{
+  border-color: #36ff00;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: #36ff00;
+  color: white;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}
+.badge-warning{
+  border-color: darkred;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: darkred;
+  color: white;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}

@@ -399,7 +399,7 @@ def store(request):
     return render(request, 'vitrina.html', data)
 
 
-class Cart(View):
+class Cart(LoginRequiredMixin,View):
     def get(self , request):
         ids = list(request.session.get('cart').keys())
         products = Product.get_products_by_id(ids)
@@ -408,7 +408,6 @@ class Cart(View):
     
 class OrderView(View):
 
-
     def get(self , request ):
         customer = request.user.id
         orders = Order.get_orders_by_customer(customer)
@@ -416,7 +415,7 @@ class OrderView(View):
         return render(request , 'orders.html'  , {'orders' : orders})
 
     
-class CheckOut(View):
+class CheckOut(LoginRequiredMixin, View):
     def post(self, request):
         address = request.POST.get('address')
         phone = request.POST.get('phone')
