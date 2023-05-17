@@ -427,12 +427,20 @@ class CheckOut(LoginRequiredMixin, View):
         print('-------------------------------')
         for product in products:
             print(cart.get(str(product.id)))
-            order = Order(customer=User(id=user),
-                          product=product,
-                          price=product.pro_price,
-                          address=address,
-                          phone=phone,
-                          quantity=cart.get(str(product.id)))
+            if product.pro_sale:
+                order = Order(customer=User(id=user),
+                              product=product,
+                              price=product.pro_price_after,
+                              address=address,
+                              phone=phone,
+                              quantity=cart.get(str(product.id)))
+            else:
+                order = Order(customer=User(id=user),
+                              product=product,
+                              price=product.pro_price,
+                              address=address,
+                              phone=phone,
+                              quantity=cart.get(str(product.id)))
             order.save()
         request.session['cart'] = {}
-        return redirect('cart')
+        return redirect('orders')

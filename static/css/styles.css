@@ -868,6 +868,22 @@ progress {
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
+.row1 {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.row1 > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: 10px;
+  margin-top: var(--bs-gutter-y);
+}
 .row > * {
   flex-shrink: 0;
   width: 100%;
@@ -920,7 +936,9 @@ progress {
   flex: 0 0 auto;
   width: auto;
 }
-
+.maxwi{
+  max-width: 10%;
+}
 .col-1 {
   flex: 0 0 auto;
   width: 8.33333333%;
@@ -929,6 +947,10 @@ progress {
 .col-2 {
   flex: 0 0 auto;
   width: 16.66666667%;
+}
+.col-23 {
+  flex: 0 0 auto;
+  width: 14.66666667%;
 }
 
 .col-3 {
