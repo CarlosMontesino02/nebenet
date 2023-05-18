@@ -31,9 +31,9 @@
                 <td><span class="singleticket">{{ order.phone}} <span></td>
                 <td><span class="singleticket">{{ order.date}} <span></td>
                 {% if order.status %}
-                <td><span class="singleticket">Completed<span></td>
+                <td><span class="badge-success">Completed<span></td>
                 {% else %}
-                <td><span class="singleticket">Pending<span></td>
+                <td><span class="badge-warning">Pending<span></td>
                 {%  endif %}
                 <td><a class="atd" href="{% url 'orders_update' order.pk %}">Modificare </a><span>
             </tr>
