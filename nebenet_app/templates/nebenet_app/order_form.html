@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="masthead-heading formhead">Order update</div>
+  <p></p>
+<div class="formulario">
+  <p></p>
+  <form enctype="multipart/form-data" method="post"><!--enctype="multipart/form-data"  para poder subir la imagen-->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button-9">Confermare</button>
+    <p></p>
+  </form>
+</div>
+{% endblock %}

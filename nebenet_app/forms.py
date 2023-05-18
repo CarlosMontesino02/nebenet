@@ -7,6 +7,7 @@ from django.views.generic import FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic import DetailView
 from django.utils.translation import gettext_lazy as _
+from django.forms import inlineformset_factory
 
 class UserForm(UserCreationForm):
 	class Meta:
@@ -49,3 +50,8 @@ class ComentForm(forms.ModelForm):
     class Meta:
         model = Coment
         fields = ['co_text']
+	
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status']

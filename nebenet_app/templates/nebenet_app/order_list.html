@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header>
+    <link href="/static/css/tabla.css" rel="stylesheet" />
+</header>
+<body>
+    <p class="adminpro"><h1>Lista dei orders</h1>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Prodotti</th>
+                <th>User</th>
+                <th>Quantità </th>
+                <th>Prezzo</th>
+                <th>Indirizzo</th>
+                <th>Telefono</th>
+                <th>Data</th>
+                <th>Stato</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in object_list %} 
+            <tr>
+                <td>{{ order.product }}</td>
+                <td> <a class="singleticket" href="/usuarios/{{ order.customer.pk }}">{{ order.customer}}</a></td>
+                <td><span class="tabalaprecio">{{ order.quantity }}<span></td>
+                <td><span class="tabalaprecio">{{ order.price}} €<span></td>
+                <td><span class="singleticket">{{ order.address}} <span></td>
+                <td><span class="singleticket">{{ order.phone}} <span></td>
+                <td><span class="singleticket">{{ order.date}} <span></td>
+                {% if order.status %}
+                <td><span class="singleticket">Completed<span></td>
+                {% else %}
+                <td><span class="singleticket">Pending<span></td>
+                {%  endif %}
+                <td><a class="atd" href="{% url 'orders_update' order.pk %}">Modificare </a><span>
+            </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+</div>
+</body>
+{% endblock %}

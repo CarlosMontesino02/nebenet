@@ -54,9 +54,11 @@ class search(ListView):
         object_list=User.objects.filter(Q(username__icontains=query))
         return object_list
     
-class User_List(LoginRequiredMixin, ListView):
+class User_List(UserPassesTestMixin,LoginRequiredMixin, ListView):
     model = User
     template_name = "./nebenet_app/user_list.html"
+    def test_func(self):
+        return self.request.user.is_staff
 
 class User_Detail(UserPassesTestMixin,LoginRequiredMixin, DetailView):
     model = User
@@ -444,3 +446,16 @@ class CheckOut(LoginRequiredMixin, View):
             order.save()
         request.session['cart'] = {}
         return redirect('orders')
+
+class Order_List(UserPassesTestMixin,ListView):
+    model = Order
+    def test_func(self):
+        return self.request.user.is_staff
+
+class Order_Update(UserPassesTestMixin,UpdateView):
+    model = Order
+    form_class = OrderForm
+    def form_valid(self,form):
+        return HttpResponseRedirect('/listorders')
+    def test_func(self):
+        return self.request.user.is_staff
