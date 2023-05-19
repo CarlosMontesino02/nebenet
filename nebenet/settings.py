@@ -40,7 +40,8 @@ SESSION_COOKIE_SECURE = True
 
 CSP_IMG_SRC = ("'self'",'localhost',
                'https://use.fontawesome.com','http://a.tile.openstreetmap.org'
-               ,'http://c.tile.openstreetmap.org','http://b.tile.openstreetmap.org')
+               ,'http://c.tile.openstreetmap.org','http://b.tile.openstreetmap.org',
+               'http://www.w3.org','data:')
 
 CSP_STYLE_SRC = ("'self'",'localhost','https://cdnjs.cloudflare.com')
 
@@ -126,7 +127,6 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'corsheaders'
 ]
-CRISPY_TEMPLATE_PACK = 'uni_form'
 #Maps
 LOCATION_FIELD = {
     'map.provider': 'openstreetmap',
@@ -177,6 +177,8 @@ DATABASES = {
     }
 }
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

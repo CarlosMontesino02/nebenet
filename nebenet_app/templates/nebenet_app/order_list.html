@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load custom_filter %}
 <header>
     <link href="/static/css/tabla.css" rel="stylesheet" />
 </header>
@@ -26,7 +27,7 @@
                 <td>{{ order.product }}</td>
                 <td> <a class="singleticket" href="/usuarios/{{ order.customer.pk }}">{{ order.customer}}</a></td>
                 <td><span class="tabalaprecio">{{ order.quantity }}<span></td>
-                <td><span class="tabalaprecio">{{ order.price}} €<span></td>
+                <td><span class="tabalaprecio">{{order.quantity|multiply:order.price}} €<span></td>
                 <td><span class="singleticket">{{ order.address}} <span></td>
                 <td><span class="singleticket">{{ order.phone}} <span></td>
                 <td><span class="singleticket">{{ order.date}} <span></td>

@@ -1,0 +1,24 @@
+.form-control{
+    height: 48px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #000;
+    font-size: 16px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 30%;
+    align-items: center;
+}
+.formulario{
+    padding-top: 7%;
+    padding-left: 10%;
+}
+
+.form-select{
+    width: 30%;
+}

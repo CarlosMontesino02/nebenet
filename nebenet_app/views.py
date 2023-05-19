@@ -452,10 +452,9 @@ class Order_List(UserPassesTestMixin,ListView):
     def test_func(self):
         return self.request.user.is_staff
 
-class Order_Update(UserPassesTestMixin,UpdateView):
+class Order_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Order
-    form_class = OrderForm
-    def form_valid(self,form):
-        return HttpResponseRedirect('/listorders')
+    fields = ['status']
+    success_url = reverse_lazy('orders_list')
     def test_func(self):
         return self.request.user.is_staff

@@ -1,17 +1,83 @@
-{% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Nebenet – Vendita e Assistenza Pc Smartphone Tablet </title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/static/assets/img/mini-logo.png" />
+  	<title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="formulario">
-  <header class="masthead">
-    <div class="fuente35 masthead-heading text-uppercase">Modulo di registrazione:</div>
-    <p></p>
-  </header>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="button-62">Sing Up</button>
-  </form>
-</div>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-{% endblock %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="/static/css/style.css">
+
+	</head>
+{% if form.errors %}
+<p class="plogin">El usuario o la contraseña son incorrectos.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p class="plogin1">No tienes acceso a la página. Inserta un nombre que pueda acceder.</p>
+    {% else %}
+    <p>Por favor, inserta tu nombre de usuario.</p>
+    {% endif %}
+{% endif %}
+	<body>
+	<section class="ftco-section">
+		<form method="POST" action="{% url 'login' %}"> {% csrf_token %}
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<a class="navbar-brand" href="{% url 'index' %}"><img class="logomain" src="/static/assets/img/logo.png" alt="..." /></a>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-5">
+					<div class="login-wrap p-4">
+		      	<div class="icon d-flex align-items-center justify-content-center">
+		      		<span class="fa fa-user-o"></span>
+		      	</div>
+		      	<h3 class="text-center mb-4">Iscriviti
+              È veloce e semplice.</h3>
+				<center>
+          {% csrf_token %}
+          {{ form|crispy }}
+				</center>
+	            <div class="form-group d-md-flex">
+	            	<div class="w-50">
+	            		<label class="checkbox-wrap checkbox-primary">Remember Me
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+									</label>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="{% url 'password_reset' %}">Ha dimenticato la password?</a>
+								</div>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="btn btn-primary rounded submit p-3 px-5">Get Started</button>
+	            </div>
+	        </div>
+				</div>
+			</div>
+		</div>
+		</form>
+	</section>
+
+	<script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/popper.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/main.js"></script>
+  {% endblock %}
+	</body>
+</html>
+

@@ -55,15 +55,15 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    pro_name = models.CharField(max_length=50, blank=False)
-    pro_price_after = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
-    pro_price = models.DecimalField(max_digits=10, decimal_places=2)
-    pro_description = models.CharField(max_length=1000, blank=False)
-    pro_characteristics =  models.CharField(max_length=1000, blank=False)
-    pro_sale = models.BooleanField()
-    pro_brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    pro_name = models.CharField('Nome',max_length=50, blank=False)
+    pro_price_after = models.DecimalField('Prezzo novo',blank=True, null=True, max_digits=10, decimal_places=2)
+    pro_price = models.DecimalField('Prezzo',max_digits=10, decimal_places=2)
+    pro_description = models.CharField('Descrizione',max_length=3000, blank=False)
+    pro_characteristics =  models.CharField('Caratteristiche',max_length=3000, blank=False)
+    pro_sale = models.BooleanField('Compila se vuoi fare un offerta')
+    pro_brand = models.ForeignKey(Brand,on_delete=models.CASCADE)
     pro_img = models.ImageField(upload_to ='img/')
-    pro_salenumber = models.PositiveIntegerField(blank=True, default=10, validators=[MinValueValidator(1), MaxValueValidator(100)])
+    pro_salenumber = models.PositiveIntegerField('offerta',blank=True, default=10, validators=[MinValueValidator(1), MaxValueValidator(100)])
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     def __str__(self):
         return self.pro_name

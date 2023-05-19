@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-  <div class="masthead-heading formhead">Aggiungi o modifica un prodotto</div>
-  <p></p>
+<head>
+  <meta charset="utf-8" />
+  <title> Adding a product</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/static/css/styleforms.css">
+</head>
 <div class="formulario">
   <p></p>
   <form enctype="multipart/form-data" method="post"><!--enctype="multipart/form-data"  para poder subir la imagen-->
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button class="button-9">Confermare</button>
     <p></p>
   </form>
