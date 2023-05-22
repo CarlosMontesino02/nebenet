@@ -4,8 +4,8 @@
 {% load custom_filter %}
 <!-- filter -->
 <body>
-<div class="container-fluid mt-3 padding7top">
-	<div class="dropdown1"><a class="dropbtn1" href="/vitrina"><i class="fa fa-bars" aria-hidden="true"></i></a>
+<div class="container-fluid34 mt-3 padding7top palcentro">
+	<div class="dropdown1"><a class="dropbtn1" href="/vitrina"><i class="fa fa-bars borde" aria-hidden="true"></i></a>
 		<div class="dropdown-content1">
 			{% for category in categories %}
 			<a href="?category={{category.id}}"
@@ -14,15 +14,14 @@
 		</div>
 	</div>
 	<div class="container">
-		<form class="busqueda" action="{% url 'searchvi' %}" method="get" >
+		<form class="busqueda34" action="{% url 'searchvi' %}" method="get" >
 			<input class="searchbar inputsea" name="q" type="text" placeholder="Trova prodotti...">
 		</form>
 	</div>
 </div>
+<div class="linea"></div>
 <div class="container-fluid mt-3">
 	<div class="row">
-
-
 		<!-- all products -->
 		<div id='products' class="col-lg-9 mx-auto">
 			<div class="row mx-auto">

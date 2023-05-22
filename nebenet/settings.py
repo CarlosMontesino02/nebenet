@@ -143,6 +143,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'nebenet.middleware.CartMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 

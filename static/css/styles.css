@@ -568,27 +568,40 @@ progress {
   padding-top: 10%;
 }
 .busqueda{
-  position:flex;
-  padding-left: 16%;
-  
+  display: flex;
+  flex-direction: row;
 }
-
+.borde{
+  border-style: solid;
+  border-width: 1px;
+  padding: 7px;
+}
 .searchbar{
+  margin-top: 1px;
   width: 60%;
-  height: 3rem;
+  height: 47.45px;
+}
+.palcentro{
+  padding-left: 2%;
+}
+.linea{
+  width: 100%;
+  background-color: #000;
+  height: 1px;
+  margin-top: 10px;
 }
 .inputsea{
   font-size: 20px;
-  padding-left: 13px;
-  border-radius: 10px;
-  border-color: #ff5900;
-  border-width: 4px;
+  border-color: #000000;
   color: #ff1900;
+  padding-left: 10px;
+  font-weight: 700;
 }
 /*Filto*/
 .dropbtn1 {
+  height: 47.45px;
   color: rgb(0, 0, 0);
-  padding: 16px;
+  padding-right: 0px;
   font-size: 32px;
   cursor: pointer;
 }
@@ -599,7 +612,7 @@ progress {
   position: relative;
   max-width: 10%;
   float: left;
-  padding-left: 15%;
+  margin-left: 14.6%;
 }
 
 .dropdown-content1 {
@@ -833,6 +846,19 @@ progress {
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
+  margin-left: auto;
+}
+
+.container34,
+.container-fluid34,
+.container-xxl34,
+.container-xl34,
+.container-lg34,
+.container-md34,
+.container-sm34 {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
   margin-left: auto;
 }
 

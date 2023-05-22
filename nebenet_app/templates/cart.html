@@ -13,6 +13,7 @@
                     <th>Image</th>
                     <th>Product</th>
                     <th>Price</th>
+                    <th>Sconto</th>
                     <th>Quantity</th>
                     <th>Total</th>
                 </tr>
@@ -25,6 +26,7 @@
                     <td><img class="rounded-circle cartimage" src="/media/{{ product.pro_img }}" alt="Image prodotti"></td>
                     <td>{{product.pro_name}}</td>
                     <td>{{product.pro_price}} €</td>
+                    <td><span class="oferta">{% if product.pro_sale %} {{product.pro_salenumber }}% {% endif %} </span></td>
                     <td>{{product|cart_quantity:request.session.cart}}</td>
                     <td>{{product|price_total:request.session.cart}} €</td>
                 </tr>
