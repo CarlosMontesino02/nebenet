@@ -22,8 +22,8 @@
                 {% else  %}
                 <p class="precio1">{{ product.pro_price }} €</p>
                 {% endif %}
-                <p>Descrizione : {{ product.pro_description }}</p>
-                <p>Caratteristiche : {{ product.pro_characteristics }}</p>
+                <p>Descrizione : {{ product.pro_description|linebreaks }}</p>
+                <p>Caratteristiche : {{ product.pro_characteristics|linebreaks }}</p>
                 <p>Tipo: {{ product.category }}</p> 
                 <p>Marca: {{ product.pro_brand }}</p>
             </ul>

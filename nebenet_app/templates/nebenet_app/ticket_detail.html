@@ -10,7 +10,7 @@
     <p class="titi">{{ ticket.ti_title }}</p>
     <p class="tiu">{{ ticket.ti_user }}, {{ ticket.ti_time }}</p>
     <p class="tima"></a>E-mail:<a href="mailto: {{ ticket.ti_mail }}"> {{ ticket.ti_mail }}</a></p>
-    <p class="tipro">{{ ticket.Problema }}</p>
+    <p class="tipro">{{ ticket.Problema|linebreaks }}</p>
     {% if ticket.ti_img  %}
     <div class="d-flex flex-column align-items-center"><img class="img-ticket tiimg" src="/media/{{ ticket.ti_img }}" alt="Image not found"/>
     </div>

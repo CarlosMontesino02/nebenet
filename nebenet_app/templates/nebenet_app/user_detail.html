@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <body class="bodyco">
-    <center>
+    <div class="espaciado">
     <div class="divbodyco1"><img class="profilepick" {% if user.image %} src="/media/{{ user.image }}" {% else %} src="/static/assets/img/noprof.webp"{% endif %}></div>
     <ul class="ulbodyco2">
       <p>Nome utente: {{ user.username }}</p>
@@ -19,7 +19,7 @@
       <p></p>
       {% endif %}
       <p></p>
-    </ul>
-    </center>   
+    </ul> 
+  </div>
 </body>
 {% endblock %}

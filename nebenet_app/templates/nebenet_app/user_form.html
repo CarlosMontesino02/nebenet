@@ -26,14 +26,14 @@
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p class="plogin1">No tienes acceso a la página. Inserta un nombre que pueda acceder.</p>
+    <p class="plogin1">Already autenticated.</p>
     {% else %}
     <p>Por favor, inserta tu nombre de usuario.</p>
     {% endif %}
 {% endif %}
 	<body>
 	<section class="ftco-section">
-		<form method="POST" action="{% url 'login' %}"> {% csrf_token %}
+		<form method="POST">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">

@@ -19,7 +19,7 @@ class UserForm(UserCreationForm):
 	username = forms.CharField(
 	    label=_("Username"),
 	    strip=False,
-	    widget=forms.PasswordInput,
+	    #widget=forms.PasswordInput,
 	    # help_text=password_validation.password_validators_help_text_html(),
 	)
 	password1 = forms.CharField(
@@ -37,9 +37,17 @@ class UserForm(UserCreationForm):
 
 
 class UserEdit(UserChangeForm):
+	password = None
 	class Meta:
 		model = User
 		fields = ('username','image','email')
+	username = forms.CharField(
+	    label=_("Username"),
+	    strip=False,
+	    #widget=forms.PasswordInput,
+	    # help_text=password_validation.password_validators_help_text_html(),
+	)
+
 
 
 class ProductForm(forms.ModelForm):
