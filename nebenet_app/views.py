@@ -25,6 +25,7 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.core.exceptions import ValidationError
+from django.http import JsonResponse
 
 def index (request):
     return render(request, 'nebenet_app/index.html')
@@ -345,38 +346,48 @@ def password_reset_request(request):
 #E-comerce
 
 class vitrina(View):
-    def post(self , request):
-        print("Post method called")
-        product = request.POST.get('product')
+    def post(self, request):
+        product_id = request.POST.get('product')
         remove = request.POST.get('remove')
-        cart = request.session.get('cart')
-        print('-----------------------')
-        print(cart)
-        print('-----------------------')
-        if cart:
-            quantity = cart.get(product)
-            if quantity:
-                if remove:
-                    if quantity<=1:
-                        cart.pop(product)
-                    else:
-                        cart[product]  = quantity-1
-                else:
-                    cart[product]  = quantity+1
-
+        cart = request.session.get('cart', {})
+        
+        quantity = cart.get(product_id, 0)
+        
+        if remove:
+            if quantity <= 1:
+                cart.pop(product_id, None)
             else:
-                cart[product] = 1
+                cart[product_id] = quantity - 1
         else:
-            cart = {}
-            cart[product] = 1
-
+            cart[product_id] = quantity + 1
+        
         request.session['cart'] = cart
-        print('cart', request.session['cart'])
-        return redirect('vitrina')  # Redirigir a la vista 'vitrina'
+        
+        data = {
+            'cart_quantity': cart.get(product_id, 0)
+        }
+        
+        return JsonResponse(data)
 
-    def get(self , request):
-        # print()
-        return HttpResponseRedirect(f'/store')
+    def get(self, request):
+        cart = request.session.get('cart', {})
+        categories = Category.get_all_categories()
+        category_id = request.GET.get('category')
+        
+        if category_id:
+            products = Product.get_all_products_by_category_id(category_id)
+        else:
+            products = Product.get_all_products()
+        
+        data = {
+            'products': products,
+            'categories': categories,
+            'cart': cart,
+            'cart_quantities': list(cart.values())
+        }
+        
+        return render(request, 'vitrina.html', data)
+
 
 def store(request):
     cart = request.session.get('cart')

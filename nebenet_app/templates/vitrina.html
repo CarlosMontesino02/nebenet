@@ -26,7 +26,7 @@
 		<div id='products' class="col-lg-9 mx-auto">
 			<div class="row mx-auto">
 				{% for product in products %}
-				<div class="card mx-auto mb-3 cartawi" id="{{product.id}}">
+				<div class="card mx-auto mb-3 cartawi" id="product-{{ product.id }}">
 					<a href="/product/{{ product.pk }}"><img class="card-img-top" src="/media/{{ product.pro_img }}" alt="..." /></a>
 					<div class="card-body">
 						<p class="card-title nombrepro">{{product.pro_name}}</p>
@@ -38,32 +38,29 @@
 					</div>
 
 					<div class="card-footer no-gutters">
-
 						{% if product|is_in_cart:request.session.cart %}
 						<div class="row1 no-gutters">
-							<form action="{% url 'vitrina' %}" class="col-23 " method="post">
+							<form class="col-23 remove-from-cart-form">
 								{% csrf_token %}
-								<input hidden type="text" name='product' value='{{product.id}}'>
-								<input hidden type="text" name='remove' value='True'>
-								<input type="submit" value=" - " class="btn btn-block btn-success border-right">
+								<input type="hidden" name="product" value="{{ product.id }}">
+								<input type="hidden" name="remove" value="True">
+								<input type="button" value="-" class="btn btn-block btn-success border-right remove-from-cart-btn">
 							</form>
-							<div class="text-center col btn btn-success">{{product|cart_quantity:request.session.cart}} in Cart</div>
-							<form action="{% url 'vitrina' %}" class="col-23 " method="post">
+							<div class="text-center col btn btn-success">{{ product|cart_quantity:request.session.cart }} in Cart</div>
+							<form class="col-23 add-to-cart-form">
 								{% csrf_token %}
-								<input hidden type="text" name='product' value='{{product.id}}'>
-								<input type="submit" value=" + " class="btn btn-block btn-success border-left">
+								<input type="hidden" name="product" value="{{ product.id }}">
+								<input type="button" value="+" class="btn btn-block btn-success border-left add-to-cart-btn">
 							</form>
 						</div>
 						{% else %}
-						<form action="{% url 'vitrina' %}" method="POST" class="btn-block">
+						<form class="add-to-cart-form">
 							{% csrf_token %}
-							<input hidden type="text" name='product' value='{{product.id}}'>
-							<input type="submit" class="float-right btn btn-success form-control"
-							value="Add To Cart">
+							<input type="hidden" name="product" value="{{ product.id }}">
+							<input type="button" class="float-right btn btn-success form-control add-to-cart-btn" value="Add To Cart">
 						</form>
 						{% endif %}
-
-					</div>
+					</div>								
 
 				</div>
 				{% endfor %}
