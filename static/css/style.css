@@ -8211,11 +8211,11 @@ h1, h2, h3, h4, h5,
 
 .login-wrap {
   position: relative;
-  background: #fff;
+  background: #ececec;
   border-radius: 10px;
   -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  box-shadow: 21px 10px 34px -5px rgba(0, 0, 0, 0.44); }
   .login-wrap h3 {
     font-weight: 700;
     font-size: 20px;

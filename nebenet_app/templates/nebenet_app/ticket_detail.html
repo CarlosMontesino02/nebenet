@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load filtro %}
 <body class="bodyco">
-    {% if user.is_staff %}
+    {% if request.user|tiene_rol_o_grupo %}
     <p class="adminpro">Ticket risolto? <a href="{% url 'tickets_delete' ticket.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
 
     {% endif %}
     <center>
     <p class="titi">{{ ticket.ti_title }}</p>
-    <p class="tiu">{{ ticket.ti_user }}, {{ ticket.ti_time }}</p>
-    <p class="tima"></a>E-mail:<a href="mailto: {{ ticket.ti_mail }}"> {{ ticket.ti_mail }}</a></p>
-    <p class="tipro">{{ ticket.Problema|linebreaks }}</p>
+    <p class="tiu">{{ ticket.ti_user }}, {{ ticket.ti_time }}<span> E-mail:<a href="mailto: {{ ticket.ti_mail }}"> {{ ticket.ti_mail }}</a></p>
+    <div class="tipro">{{ ticket.Problema|linebreaks }}</div>
     {% if ticket.ti_img  %}
     <div class="d-flex flex-column align-items-center"><img class="img-ticket tiimg" src="/media/{{ ticket.ti_img }}" alt="Image not found"/>
     </div>
     </center> 
     {% endif %}
     <div class="comentarios">
-    {% if user.is_staff%}
+    {% if request.user|tiene_rol_o_grupo %}
     <p class="cosabla">Chatta con {{ ticket.ti_user }}:</p>
     {% else %}
     <p class="cosabla">Chatta con l'amministrazione:</p>

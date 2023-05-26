@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load filtro %}
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -16,6 +17,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
@@ -42,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'index' %}">Home</a></li>
-                        {% if request.user.is_staff %} 
+                        {% if request.user|tiene_rol_o_grupo %} 
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'products_admin_list' %}">Prodotti</a>
                         </li>
@@ -53,7 +55,7 @@
                         {% endif %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'brands' %}">Marche</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/company/1/">Contatti</a></li>
-                        {% if request.user.is_staff %}
+                        {% if request.user|tiene_rol_o_grupo %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'tickets-admin' %}">Tickets</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'usuarios-lista' %}">Users</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'orders_list' %}">Orders</a></li>
@@ -62,12 +64,12 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'tickets_add' %}">Ticket</a></li>
                         <div class="dropdown"><li class="nav-item mx-0 mx-lg-1"><a class="dropbtn nav-link py-3 px-0 px-lg-3 rounded" href="/usuarios/{{ request.user.pk }}">{{ request.user.username }}</a></li>
                             <div class="dropdown-content">
+                                <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/cart">Cart 
+                                    <span>{{request.session.cart.keys|length}}</span>
+                                    <span class="sr-only">(current)</span></a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'tickets' %}">I miei tickets</a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'orders' %}">I miei orders</a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'usuarios-update' request.user.pk %}">Opzioni</a>
-                                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/cart">Cart 
-                                      <span>{{request.session.cart.keys|length}}</span>
-                                      <span class="sr-only">(current)</span></a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'logout' %}">Log Out</a>
                               </div>
                             </div>

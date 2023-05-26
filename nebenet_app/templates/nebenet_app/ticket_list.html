@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load filtro %}
 {% load static %}
 <header class="masthead">
 	<meta
@@ -7,7 +8,7 @@
 	content="Nebenet ticket list">
 </header>
 <center>
-<p class="adminpro"><h1>Lista dei tickets</h1> {% if user.is_staff %}<a href="{% url 'tickets-admin' %}">
+<p class="adminpro"><h1>Lista dei tickets</h1> {% if request.user|tiene_rol_o_grupo %}<a href="{% url 'tickets-admin' %}">
     <button class="button-9" role="button">Admin view</button></a></p>{% endif %}
         <ul class="tickets">
             {% for ticket in object_list %} 

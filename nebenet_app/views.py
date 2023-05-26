@@ -47,19 +47,23 @@ class Update_User(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
             return False
 
 #User
-class search(ListView):
+class search(UserPassesTestMixin,LoginRequiredMixin,ListView):
     model = User
     template_name="photanic_app/search.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
         object_list=User.objects.filter(Q(username__icontains=query))
         return object_list
-    
+    def test_func(self):
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
+
 class User_List(UserPassesTestMixin,LoginRequiredMixin, ListView):
     model = User
     template_name = "./nebenet_app/user_list.html"
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class User_Detail(UserPassesTestMixin,LoginRequiredMixin, DetailView):
     model = User
@@ -86,52 +90,52 @@ class Brand_List(ListView):
 class Brand_Detail(UserPassesTestMixin,DetailView):
     model = Brand
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class Brand_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
     model = Brand
     fields = ['bra_name','bra_img','bra_contact']
     success_url = reverse_lazy('brands')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class Brand_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Brand
     fields = ['bra_name','bra_img','bra_contact']
     success_url = reverse_lazy('brands')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class Brand_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Brand
     success_url='/brand/'
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
     
 # Products
-class searchproduct(ListView):
+class searchproduct(UserPassesTestMixin,LoginRequiredMixin,ListView):
     model = Product
     template_name="photanic_app/searchproducts.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
         object_list=Product.objects.filter(Q(pro_name__icontains=query))
         return object_list
-
-class searchvitrina(ListView):
-    model = Product
-    template_name="photanic_app/searchvitrina.html"
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        object_list=Product.objects.filter(Q(pro_name__icontains=query))
-        return object_list
-
+    def test_func(self):
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
+    
 class Product_Detail(DetailView):
     model = Product
 
 class Product_Admin_List(UserPassesTestMixin,LoginRequiredMixin,ListView):
     model = Product
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 
 class Product_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
@@ -139,14 +143,16 @@ class Product_Create(UserPassesTestMixin,LoginRequiredMixin, CreateView):
     form_class = ProductForm
     success_url = reverse_lazy('products_admin_list')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class Product_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
     fields = ['pro_name','pro_price','pro_description','pro_characteristics','pro_brand','pro_img']
     success_url = reverse_lazy('products_admin_list')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class Product_Update_Sale(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
@@ -174,14 +180,16 @@ class Product_Update_Sale(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
             return HttpResponseRedirect(self.get_success_url())
 
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 
 class Product_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Product
     success_url='/product/'
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 #Company
 
@@ -193,21 +201,26 @@ class Company_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     fields = ['co_name','co_city','co_ubi','co_tlf','co_mail']
     success_url = reverse_lazy('index')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 #Tickets
 
-class searchticket(ListView):
+class searchticket(UserPassesTestMixin, LoginRequiredMixin,ListView):
     model = Ticket
     template_name="photanic_app/searchtickets.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
         object_list=Ticket.objects.filter(Q(ti_title__icontains=query))
         return object_list
+    def test_func(self):
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
     
 class Ticket_List(ListView):
     model = Ticket
     def get_queryset(self):
-        if self.request.user.is_staff:
+        user = self.request.user
+        if self.request.user.is_staff or user.groups.filter(name='dependiente').exists(): 
             resultado=Ticket.objects.all()
         else:
             resultado=Ticket.objects.filter(ti_user=self.request.user)
@@ -229,7 +242,6 @@ class TicketDetail(UserPassesTestMixin, LoginRequiredMixin, DetailView):
 
     def post(self , request , *args , **kwargs):
         if self.request.method == 'POST':
-            print('-------------------------------------------------------------------------------Reached here')
             coment_form = ComentForm(self.request.POST)
             if coment_form.is_valid():
                 co_text = coment_form.cleaned_data['co_text']
@@ -274,7 +286,8 @@ class Ticket_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url='/ticket/'
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
     
 #Company
 class Company_Detail(DetailView):
@@ -285,34 +298,26 @@ class Company_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     fields = ['co_name','co_city','co_ubi','co_tlf','co_mail']
     success_url = reverse_lazy('index')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 #Coment
-class Coment_List(ListView):
+class Coment_List(UserPassesTestMixin, LoginRequiredMixin,ListView):
     model = Coment
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
-class Coment_Detail(DetailView):
+class Coment_Detail(UserPassesTestMixin, LoginRequiredMixin,DetailView):
     model = Coment
 
-
-#class Coment_Create(LoginRequiredMixin, CreateView):
-#    model = Coment
-#    form_class = ComentForm
-#    def form_valid(self, form):
-#        obj = form.save(commit=False)
-#        obj.co_user = self.request.user
-#        obj.save()
-#        return HttpResponseRedirect(reverse_lazy('tickets'))
-#    def test_func(self):
-#        return self.request.user.is_staff
 
 class Coment_Delete(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Coment
     success_url='/tickets/'
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
     
 #Password reset
 def password_reset_request(request):
@@ -375,7 +380,7 @@ class vitrina(View):
         category_id = request.GET.get('category')
         
         if category_id:
-            products = Product.get_all_products_by_category_id(category_id)
+            products = Product.get_all_products_by_categoryid(category_id)
         else:
             products = Product.get_all_products()
         
@@ -388,6 +393,56 @@ class vitrina(View):
         
         return render(request, 'vitrina.html', data)
 
+class searchvitrina(ListView):
+    model = Product
+    template_name="photanic_app/searchvitrina.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=Product.objects.filter(Q(pro_name__icontains=query))
+        return object_list
+
+    def post(self, request):
+        product_id = request.POST.get('product')
+        remove = request.POST.get('remove')
+        cart = request.session.get('cart', {})
+        
+        quantity = cart.get(product_id, 0)
+        
+        if remove:
+            if quantity <= 1:
+                cart.pop(product_id, None)
+            else:
+                cart[product_id] = quantity - 1
+        else:
+            cart[product_id] = quantity + 1
+        
+        request.session['cart'] = cart
+        
+        data = {
+            'cart_quantity': cart.get(product_id, 0)
+        }
+        
+        return JsonResponse(data)
+
+    def get(self, request):
+        query = self.request.GET.get("q")
+        cart = request.session.get('cart', {})
+        categories = Category.get_all_categories()
+        category_id = request.GET.get('category')
+        
+        if category_id:
+            products = Product.get_all_products_by_categoryid(category_id)
+        else:
+            products = Product.objects.filter(Q(pro_name__icontains=query))
+        
+        data = {    
+            'products': products,
+            'categories': categories,
+            'cart': cart,
+            'cart_quantities': list(cart.values())
+        }
+        
+        return render(request, 'vitrina.html', data)
 
 def store(request):
     cart = request.session.get('cart')
@@ -407,8 +462,6 @@ def store(request):
     data['products'] = products
     data['categories'] = categories
     data['cart'] = cart  # Agregar el carrito al diccionario de datos
-    print('you are:', request.user.username)
-    print(cart)
     return render(request, 'vitrina.html', data)
 
 
@@ -416,15 +469,13 @@ class Cart(LoginRequiredMixin,View):
     def get(self , request):
         ids = list(request.session.get('cart').keys())
         products = Product.get_products_by_id(ids)
-        print(products)
         return render(request , 'cart.html' , {'products' : products})
     
-class OrderView(View):
+class OrderView(LoginRequiredMixin,View):
 
     def get(self , request ):
         customer = request.user.id
         orders = Order.get_orders_by_customer(customer)
-        print(orders)
         return render(request , 'orders.html'  , {'orders' : orders})
 
     
@@ -435,11 +486,7 @@ class CheckOut(LoginRequiredMixin, View):
         user = request.user.id
         cart = request.session.get('cart')
         products = Product.get_products_by_id(list(cart.keys()))
-        print('-------------------------------')
-        print(address, phone, user, cart, products)
-        print('-------------------------------')
         for product in products:
-            print(cart.get(str(product.id)))
             if product.pro_sale:
                 order = Order(customer=User(id=user),
                               product=product,
@@ -461,11 +508,13 @@ class CheckOut(LoginRequiredMixin, View):
 class Order_List(UserPassesTestMixin,ListView):
     model = Order
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 
 class Order_Update(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Order
     fields = ['status']
     success_url = reverse_lazy('orders_list')
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()

@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load filtro %}
 <header class="masthead">
     <meta
 	name="description"
 	content="Nebenet product list">
 </header>
     <body>
-        {% if user.is_staff %}
+        {% if request.user|tiene_rol_o_grupo %}
         <p class="adminpro">Vuoi aggiungere un prodotto? <a href="{% url 'products_add' %}">
             <button class="button-9" role="button">Aggiungere</button></a></p>
 

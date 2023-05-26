@@ -50,6 +50,7 @@
 							<form class="col-23 add-to-cart-form">
 								{% csrf_token %}
 								<input type="hidden" name="product" value="{{ product.id }}">
+								<input type="hidden" name="add" value="True">
 								<input type="button" value="+" class="btn btn-block btn-success border-left add-to-cart-btn">
 							</form>
 						</div>

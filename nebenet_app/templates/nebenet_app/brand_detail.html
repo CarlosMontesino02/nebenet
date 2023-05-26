@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load filtro %}
 {% load static %}
 <body class="bodyco">
-    {% if user.is_staff %}
+    {% if request.user|tiene_rol_o_grupo %}
     <p class="adminpro">Vuoi modificare il marca? <a href="{% url 'brands_update' brand.pk %}"><button class="button-9" role="button">Modificare</button></a><a href="{% url 'brands_delete' brand.pk %}"><button class="button-91" role="button">Eliminare</button></a></p>
 
     {% endif %}

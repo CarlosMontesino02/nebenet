@@ -4023,7 +4023,7 @@ textarea.form-control-lg {
 .logomain {
   display: block;
   margin-right: auto;
-  width: 57%;
+  width: 50%;
 }
 
 .formhead {
@@ -4223,7 +4223,6 @@ textarea.form-control-lg {
   flex-grow: 1;
   align-items: center;
 }
-
 .navbar-toggler {
   padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
   font-size: var(--bs-navbar-toggler-font-size);
@@ -11517,8 +11516,10 @@ html {
 }
 
 .titi{
-  font-size: 25px; 
+  font-size: 27px; 
   text-align: center;
+  font-weight: 600;
+  padding-top: 3%;
 }
 .tiu{
   font-size: 20px; 
@@ -11545,8 +11546,10 @@ html {
 }
 
 .tipro{
-  padding-left: 10%; 
-  padding-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: justify;
+  text-justify: inter-word;
 }
 .tiimg{
   padding-bottom: 5%

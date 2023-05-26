@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load filtro %}
 <header class="masthead">
     <meta
 	name="description"
 	content="Nebenet brand list">
 </header>
 <center><h1>Marchi con cui lavoriamo</h1></center>
-{% if user.is_staff %}
+{% if request.user|tiene_rol_o_grupo %}
 <p class="adminpro">Vuoi aggiungere un marchio? <a href="{% url 'brands_add' %}"><button class="button-9" role="button">Aggiungere</button></a></p>
 
 {% endif %}
@@ -24,7 +25,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            {% if user.is_staff %}<a href="{{ brand.pk }}">{% endif %}<img class="img-fluidbrand" src="/media/{{ brand.bra_img }}" alt="..." /></a>
+                            {% if request.user|tiene_rol_o_grupo %}<a href="{{ brand.pk }}">{% endif %}<img class="img-fluidbrand" src="/media/{{ brand.bra_img }}" alt="..." /></a>
                         </div>
                     </div>
             {% endfor %}

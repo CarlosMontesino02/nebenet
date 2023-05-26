@@ -71,7 +71,7 @@ CSP_STYLE_SRC_ATTR = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 )
 
 CSP_SCRIPT_SRC = ("'self'",'localhost', 'https://use.fontawesome.com','https://maps.googleapis.com','https://maxcdn.bootstrapcdn.com',
-                  'https://cdnjs.cloudflare.com','https://code.jquery.com')
+                  'https://cdnjs.cloudflare.com','https://code.jquery.com','https://cdn.jsdelivr.net')
 
 CSP_FONT_SRC = ("'self'",'localhost', 'https://fonts.googleapis.com',
                 'https://cdnjs.cloudflare.com',

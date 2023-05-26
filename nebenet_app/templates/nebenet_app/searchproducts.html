@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load filtro %}
 <header>
     <link href="/static/css/tabla.css" rel="stylesheet" />
 </header>
 <body>
     <p class="adminpro"><h1>Elenco dei prodotti</h1> 
-        {% if user.is_staff %}
+        {% if request.user|tiene_rol_o_grupo %}
         <div class="padding6" class="container">
             <form action="{% url 'searchpro' %}" method="get" >
                 <input name="q" type="text" placeholder="Trova proditti...">

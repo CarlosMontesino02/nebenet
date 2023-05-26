@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load filtro %}
 <header>
     <link href="/static/css/tabla.css" rel="stylesheet" />
 </header>
 <body>
     <p class="adminpro"><h1>Lista dei prodotti</h1>
-        {% if user.is_staff %}
+        {% if request.user|tiene_rol_o_grupo %}
         <p class="adminpro">Vuoi aggiungere un prodotto? <a href="{% url 'products_add' %}">
             <button class="button-9" role="button">Aggiungere</button></a></p>
 
         {% endif %}
-        {% if user.is_staff %}
+        {% if request.user|tiene_rol_o_grupo %}
         <div class="paddingticket" class="container">
             <form action="{% url 'searchpro' %}" method="get" >
                 <input name="q" type="text" placeholder="Trova prodotti...">
