@@ -539,7 +539,35 @@ summary {
     line-height: var(--bs-body-line-height) !important;
     color: var(--bs-body-color) !important;
     padding: 35px;
-    border-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+    .comentariossep {
+    text-align: left !important;
+    width: 80%;
+    height: 1px;
+    margin: auto;
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+    background-color: #ffffff;
+  }
+    .comentarios1 {
+    border-top-style: solid;
+    border-width: 1px;
+    border-top: #ffffff;
+    text-align: left !important;
+    width: 80%;
+    margin: auto;
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+    padding-bottom: 2% !important;
+    font-size: 1.4rem !important;
+    background-color: #0d356e;
+    font-family: var(--bs-body-font-family) !important;
+    font-weight: var(--bs-body-font-weight) !important;
+    line-height: var(--bs-body-line-height) !important;
+    color: var(--bs-body-color) !important;
+    padding: 35px;
   }
   .cotexto {
     font-size: 1.2rem;
@@ -4175,12 +4203,10 @@ textarea.form-control-lg {
 
 .button-623 {
   cursor: pointer;
-  border: 0;
+  border: -2px;
   border-radius: 6px;
   font-weight: 600;
-  margin: 0 10px;
-  width: 50px;
-  padding: 10px 0;
+  width: 45px;
   transition: 0.4s;
   color: white;
   background-color: #215890;

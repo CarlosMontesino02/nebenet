@@ -227,11 +227,10 @@ class Ticket_List(ListView):
         return resultado
 ###################################################################################SOlucionar problemas de seguirdad
 class TicketDetail(UserPassesTestMixin, LoginRequiredMixin, DetailView):
-    template_name= 'nebenet_app/ticket_detail.html'
-    model= Ticket
+    template_name = 'nebenet_app/ticket_detail.html'
+    model = Ticket
 
-
-    def get_context_data(self , **kwargs):
+    def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         connected_coments = Coment.objects.filter(co_ticket=self.get_object())
         number_of_coments = connected_coments.count()
@@ -240,20 +239,34 @@ class TicketDetail(UserPassesTestMixin, LoginRequiredMixin, DetailView):
         data['coment_form'] = ComentForm()
         return data
 
-    def post(self , request , *args , **kwargs):
+    def post(self, request, *args, **kwargs):
         if self.request.method == 'POST':
             coment_form = ComentForm(self.request.POST)
             if coment_form.is_valid():
                 co_text = coment_form.cleaned_data['co_text']
-            new_coment = Coment(co_text=co_text , co_user = self.request.user , co_ticket=self.get_object())
-            new_coment.save()
-            return redirect(self.request.path_info)
+                new_coment = Coment(co_text=co_text, co_user=self.request.user, co_ticket=self.get_object())
+                new_coment.save()
+        return self.get_comments()
+
+    def get_comments(self):
+        connected_coments = Coment.objects.filter(co_ticket=self.get_object())
+        comments_data = []
+        for comment in connected_coments:
+            comment_data = {
+                'co_user': comment.co_user.username,
+                'co_text': comment.co_text,
+                'ti_time': comment.ti_time.strftime('%Y-%m-%d %H:%M:%S')
+            }
+            comments_data.append(comment_data)
+        return JsonResponse(comments_data, safe=False)
+
     def test_func(self):
         if self.request.user.is_superuser:
             return True
         else:
             try:
-                return User.objects.get(pk=self.request.user.pk)==Ticket.objects.get(pk=self.kwargs.get("pk")).ti_user
+                return User.objects.get(pk=self.request.user.pk) == Ticket.objects.get(
+                    pk=self.kwargs.get("pk")).ti_user
             except:
                 return False
 #####################################################################
