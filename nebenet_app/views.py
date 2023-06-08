@@ -216,7 +216,7 @@ class searchticket(UserPassesTestMixin, LoginRequiredMixin,ListView):
         user = self.request.user
         return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
     
-class Ticket_List(ListView):
+class Ticket_List(LoginRequiredMixin,ListView):
     model = Ticket
     def get_queryset(self):
         user = self.request.user
@@ -225,6 +225,11 @@ class Ticket_List(ListView):
         else:
             resultado=Ticket.objects.filter(ti_user=self.request.user)
         return resultado
+class Product_ticekt_List(UserPassesTestMixin,LoginRequiredMixin,ListView):
+    model = Ticket
+    def test_func(self):
+        user = self.request.user
+        return self.request.user.is_staff or user.groups.filter(name='dependiente').exists()
 ###################################################################################SOlucionar problemas de seguirdad
 class TicketDetail(UserPassesTestMixin, LoginRequiredMixin, DetailView):
     template_name = 'nebenet_app/ticket_detail.html'

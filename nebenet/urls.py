@@ -55,14 +55,13 @@ urlpatterns = [
     path('product/<int:pk>/update', Product_Update.as_view(), name='products_update'),
     path('product/<int:pk>/update/sale', Product_Update_Sale.as_view(), name='products_update_sale'),
     path('product/<int:pk>/delete/', Product_Delete.as_view(), name='products_delete'),
-#Mirar que pasa con las url xd
     #Tickets
     path('ticket/', Ticket_List.as_view(), name="tickets"),
     path('ticket/<int:pk>/', TicketDetail.as_view(), name='tickets_details'),
     path('ticket/add/', Ticket_Create.as_view(), name="tickets_add"),
     path('ticket/<int:pk>/update', Ticket_Update.as_view(), name='tickets_update'),
     path('ticket/<int:pk>/delete/', Ticket_Delete.as_view(), name='tickets_delete'),
-    path('ticketsadmin/', Ticket_List.as_view(template_name='nebenet_app/ticket_admin.html'), name='tickets-admin'),
+    path('ticketsadmin/', Product_ticekt_List.as_view(template_name='nebenet_app/ticket_admin.html'), name='tickets-admin'),
     path('ticketsadmins/search', searchticket.as_view(template_name='nebenet_app/searchtickets.html'), name="searchti"),
 
     #Coments
