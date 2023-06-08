@@ -2,47 +2,50 @@
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
-<div class="container padding7top">
-   <div class="border rounded p-4 m-4">
-        <p class="display-4 pl-4 ml-4">Your Orders</p>
-        <hr>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Sno.</th>
-                    <th>Image</th>
-                    <th>Product</th>
-                    <th>Date</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>                
-                {% for order in orders %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td><img class="cartimage rounded-circle" src="/media/{{ order.product.pro_img }}" alt=""></td>
-                    <td>{{order.product.pro_name}}</td>
-                    <td>{{order.date}}</td>
-                    <td>{{order.price}} €</td>
-                    <td>{{order.quantity}}</td>
-                    <td>{{order.quantity|multiply:order.price}} €</td>
-                    {% if order.status %}
-                    <td><small class="badge-success">Completed</small></td>
-                    {%else%}
-                    <td><small class="badge-warning">Pending</small></td>
-                    {% endif %}
-                </tr>
-
-                {% endfor %}
-               
-            </tbody>
-
-        </table>
-       
-   </div>
+<div class="espaciado">
+    <div class="container padding7top">
+        <div class="border rounded p-4 m-4">
+             <p class="display-4 pl-4 ml-4">I tuoi ordini</p>
+             <hr>
+             <table class="table">
+                 <thead>
+                     <tr>
+                         <th>Sno.</th>
+                         <th>Immagine</th>
+                         <th>Prodotto</th>
+                         <th>Data</th>
+                         <th>Prezzo</th>
+                         <th>Quantità</th>
+                         <th>Totale</th>
+                         <th>Stato</th>
+                     </tr>
+                 </thead>
+                 <tbody>                
+                     {% for order in orders %}
+                     <tr>
+                         <td>{{forloop.counter}}</td>
+                         <td><img class="cartimage rounded-circle" src="/media/{{ order.product.pro_img }}" alt=""></td>
+                         <td>{{order.product.pro_name}}</td>
+                         <td>{{order.date}}</td>
+                         <td>{{order.price}} €</td>
+                         <td>{{order.quantity}}</td>
+                         <td>{{order.quantity|multiply:order.price}} €</td>
+                         {% if order.status %}
+                         <td><small class="badge-success">Completed</small></td>
+                         {%else%}
+                         <td><small class="badge-warning">Pending</small></td>
+                         {% endif %}
+                     </tr>
+     
+                     {% endfor %}
+                    
+                 </tbody>
+     
+             </table>
+            
+        </div>
+     </div>
+     
 </div>
 
 

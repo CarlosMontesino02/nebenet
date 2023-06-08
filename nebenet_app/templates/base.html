@@ -62,7 +62,9 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'orders_list' %}">Orders</a></li>
                         {% endif %}
                         {% if request.user.is_authenticated %}
+                        {% if not request.user.is_staff%}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'tickets_add' %}">Ticket</a></li>
+                        {% endif %}
                         <div class="dropdown"><li class="nav-item mx-0 mx-lg-1"><a class="dropbtn nav-link py-3 px-0 px-lg-3 rounded" href="/usuarios/{{ request.user.pk }}">{{ request.user.username }}</a></li>
                             <div class="dropdown-content">
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/cart">Cart 

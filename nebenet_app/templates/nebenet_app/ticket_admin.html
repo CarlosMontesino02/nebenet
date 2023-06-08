@@ -6,37 +6,40 @@
     <link href="/static/css/tabla.css" rel="stylesheet" />
 </header>
 <body>
-    <p class="adminpro"><h1>Lista dei tickets</h1>
-        {% if request.user|tiene_rol_o_grupo %}
-        <div class="paddingticket" class="container">
-            <form action="{% url 'searchti' %}" method="get" >
-                <input name="q" type="text" placeholder="Trova un ticket...">
-            </form>
-        </div>
-        {% endif %}
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Data</th>
-            <th>Utente</th>
-            <th>Titolo </th>
-            <th>Mail</th>
-            <th>Opzioni</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for ticket in object_list %} 
-        <tr>
-            <td>{{ ticket.ti_time }}</td>
-            <td> <a class="singleticket" href="/usuarios/{{ ticket.ti_user.pk }}">{{ ticket.ti_user }}</a></td>
-            <td><a class="singleticket" href="/ticket/{{ ticket.pk }}">{{ ticket.ti_title }}</a></td>
-            <td>{{ ticket.ti_mail }}</td>
-            <td><a class="atd" href="{% url 'tickets_update' ticket.pk %}">Modificare </a><span></span> <a class="etd" href="{% url 'tickets_delete' ticket.pk %}"> Eliminare</a></td>
-        </tr>
-        {% endfor %}
-        <tbody>
-    </table>
-</div>
+    <div class="espaciado">
+        <p class="adminpro"><h1>Lista dei tickets</h1>
+            {% if request.user|tiene_rol_o_grupo %}
+            <div class="paddingticket" class="container">
+                <form action="{% url 'searchti' %}" method="get" >
+                    <input name="q" type="text" placeholder="Trova un ticket...">
+                </form>
+            </div>
+            {% endif %}
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Utente</th>
+                <th>Titolo </th>
+                <th>Mail</th>
+                <th>Opzioni</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in object_list %} 
+            <tr>
+                <td>{{ ticket.ti_time }}</td>
+                <td> <a class="singleticket" href="/usuarios/{{ ticket.ti_user.pk }}">{{ ticket.ti_user }}</a></td>
+                <td><a class="singleticket" href="/ticket/{{ ticket.pk }}">{{ ticket.ti_title }}</a></td>
+                <td>{{ ticket.ti_mail }}</td>
+                <td><a class="atd" href="{% url 'tickets_update' ticket.pk %}">Modificare </a><span></span> <a class="etd" href="{% url 'tickets_delete' ticket.pk %}"> Eliminare</a></td>
+            </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+    </div>
+    </div>
+
 </body>
 {% endblock %}

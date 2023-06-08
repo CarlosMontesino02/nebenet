@@ -15,13 +15,15 @@
         <img class="img-ticket tiimg" src="/media/{{ ticket.ti_img }}" alt="Image not found"/>
       </div>
       {% endif %}
-    </center> 
-    <div class="comentarios">
+    </center>
+    <div class="comentarios2">
       {% if request.user|tiene_rol_o_grupo %}
       <p class="cosabla">Chatta con {{ ticket.ti_user }}:</p>
       {% else %}
       <p class="cosabla">Chatta con l'amministrazione:</p>
       {% endif %}
+    </div>
+    <div class="comentarios">
       {% for coment in coments %}
       <p>
         <span class="fechaco">{{ coment.ti_time }}</span>
